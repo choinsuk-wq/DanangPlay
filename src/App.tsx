@@ -13,7 +13,7 @@ import { BookingFormValues } from './types/tour';
 export const App: React.FC = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('3n4d');
   const [selectedGolfCourse, setSelectedGolfCourse] = useState<string | undefined>(undefined);
-  const [needVehiclePrefill, setNeedVehiclePrefill] = useState<boolean>(true);
+  const [needVehiclePrefill, setNeedVehiclePrefill] = useState<boolean>(false);
   const [needVillaPrefill, setNeedVillaPrefill] = useState<boolean>(false);
   const [successBookingData, setSuccessBookingData] = useState<BookingFormValues | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

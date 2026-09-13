@@ -46,7 +46,7 @@ interface BookingFormProps {
 export const BookingForm: React.FC<BookingFormProps> = ({
   selectedPackage = '3n4d',
   selectedGolfCourse,
-  needVehiclePrefill = true,
+  needVehiclePrefill = false,
   needVillaPrefill = false,
   onSuccess,
 }) => {
@@ -88,7 +88,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         : ['BRG 다낭 골프 리조트'],
       needPoolVilla: needVillaPrefill,
       needVehicle: needVehiclePrefill,
-      teeOffTime: '오전 07시 ~ 08시대 선호 (추천)',
+      teeOffTime: '오전 07시 ~ 08시대 (추천)',
       message: '',
     },
   });
@@ -398,7 +398,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 <span>4. 티오프 시간대 및 부가 옵션</span>
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 items-end">
                 {/* Tee-off time */}
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
@@ -406,24 +406,26 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   </label>
                   <select
                     {...register('teeOffTime')}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:border-emerald-500 bg-white"
+                    className="w-full h-[46px] px-3.5 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:border-emerald-500 bg-white font-medium"
                   >
-                    <option value="오전 07시 ~ 08시대 선호 (추천)">오전 07시 ~ 08시대 선호 (추천)</option>
-                    <option value="오전 08시 ~ 09시대 선호">오전 08시 ~ 09시대 선호</option>
-                    <option value="오후 11시 ~ 13시대 선호">오후 11시 ~ 13시대 선호</option>
-                    <option value="야간 라이트 라운딩 선호 (바나힐)">야간 라이트 라운딩 선호 (바나힐)</option>
-                    <option value="야간 라이트 라운딩 선호 (BRG 다낭)">야간 라이트 라운딩 선호 (BRG 다낭)</option>
-                    <option value="골든타임 추천으로 조율">골든타임 추천으로 조율</option>
+                    <option value="오전 07시 ~ 08시대 (추천)">오전 07시 ~ 08시대 (추천)</option>
+                    <option value="오전 08시 ~ 09시대">오전 08시 ~ 09시대</option>
+                    <option value="오후 11시 ~ 13시대">오후 11시 ~ 13시대</option>
+                    <option value="야간 라운딩(바나힐, 다낭)">야간 라운딩(바나힐, 다낭)</option>
+                    <option value="시간대 상관없음">시간대 상관없음</option>
                   </select>
                 </div>
 
                 {/* Need Pool Villa */}
-                <div className="flex items-center">
-                  <label className="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50 w-full cursor-pointer hover:bg-slate-100">
+                <div>
+                  <div className="hidden sm:block text-xs font-bold text-transparent mb-1.5 select-none" aria-hidden="true">
+                    부가 옵션
+                  </div>
+                  <label className="flex items-center gap-2.5 h-[46px] px-3.5 rounded-xl border border-slate-200 bg-slate-50 w-full cursor-pointer hover:bg-slate-100 transition-colors">
                     <input
                       type="checkbox"
                       {...register('needPoolVilla')}
-                      className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+                      className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer flex-shrink-0"
                     />
                     <span className="text-xs font-semibold text-slate-800">
                       프라이빗 풀빌라 견적 포함 희망
@@ -432,12 +434,15 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                 </div>
 
                 {/* Need Vehicle */}
-                <div className="flex items-center">
-                  <label className="flex items-center gap-2.5 p-3 rounded-xl border border-slate-200 bg-slate-50 w-full cursor-pointer hover:bg-slate-100">
+                <div>
+                  <div className="hidden sm:block text-xs font-bold text-transparent mb-1.5 select-none" aria-hidden="true">
+                    부가 옵션
+                  </div>
+                  <label className="flex items-center gap-2.5 h-[46px] px-3.5 rounded-xl border border-slate-200 bg-slate-50 w-full cursor-pointer hover:bg-slate-100 transition-colors">
                     <input
                       type="checkbox"
                       {...register('needVehicle')}
-                      className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+                      className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer flex-shrink-0"
                     />
                     <span className="text-xs font-semibold text-slate-800">
                       단독 전용 렌터카 배차 희망
