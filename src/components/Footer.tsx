@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { COMPANY_INFO, FAQ_ITEMS } from '../data/tourData';
-import { Phone, Mail, MessageCircle, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
+import { Phone, Mail, MessageCircle, ChevronDown, ShieldCheck } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -26,33 +26,45 @@ export const Footer: React.FC = () => {
         </div>
 
         <div className="space-y-3.5">
-          {FAQ_ITEMS.map((item, idx) => (
-            <div
-              key={idx}
-              className="rounded-2xl bg-forest-900/60 border border-forest-800/80 overflow-hidden transition-all"
-            >
-              <button
-                onClick={() => toggleFaq(idx)}
-                className="w-full p-5 text-left flex items-center justify-between text-white hover:text-gold-300 transition-colors cursor-pointer"
+          {FAQ_ITEMS.map((item, idx) => {
+            const isOpen = openFaq === idx;
+            return (
+              <div
+                key={idx}
+                className="rounded-2xl bg-forest-900/60 border border-forest-800/80 overflow-hidden transition-all duration-300"
               >
-                <span className="font-extrabold text-base sm:text-lg flex items-center gap-3">
-                  <span className="text-gold-400 font-black">Q.</span>
-                  {item.q}
-                </span>
-                {openFaq === idx ? (
-                  <ChevronUp className="w-5 h-5 text-gold-400 flex-shrink-0" />
-                ) : (
-                  <ChevronDown className="w-5 h-5 text-slate-400 flex-shrink-0" />
-                )}
-              </button>
-              {openFaq === idx && (
-                <div className="px-5 pb-5 pt-1 text-slate-200 text-sm sm:text-base leading-relaxed border-t border-forest-800/60">
-                  <span className="text-gold-400 font-black mr-1.5">A.</span>
-                  {item.a}
+                <button
+                  onClick={() => toggleFaq(idx)}
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${idx}`}
+                  className="w-full p-5 text-left flex items-center justify-between text-white hover:text-gold-300 transition-colors cursor-pointer"
+                >
+                  <span className="font-extrabold text-base sm:text-lg flex items-center gap-3">
+                    <span className="text-gold-400 font-black">Q.</span>
+                    {item.q}
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
+                      isOpen ? 'transform rotate-180 text-gold-400' : 'text-slate-400'
+                    }`}
+                  />
+                </button>
+                <div
+                  id={`faq-answer-${idx}`}
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="px-5 pb-5 pt-1 text-slate-200 text-sm sm:text-base leading-relaxed border-t border-forest-800/60">
+                      <span className="text-gold-400 font-black mr-1.5">A.</span>
+                      {item.a}
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
 

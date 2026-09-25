@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GOLF_COURSES } from '../data/tourData';
 import { GolfCourse } from '../types/tour';
+
+const FALLBACK_GOLF_IMAGE = 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=1000&q=80';
 import {
   Flag,
   Sparkles,
@@ -29,6 +31,23 @@ const GOLF_GOLD_TAGS: Record<string, string[]> = {
 
 export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) => {
   const [detailCourse, setDetailCourse] = useState<GolfCourse | null>(null);
+
+  // Close modal on ESC key press & lock body scroll
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setDetailCourse(null);
+      }
+    };
+    if (detailCourse) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [detailCourse]);
 
   const handleInquireFromModal = (courseName: string) => {
     setDetailCourse(null);
@@ -72,6 +91,9 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
                     alt={course.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
                     loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.src = FALLBACK_GOLF_IMAGE;
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/40 to-transparent" />
 
@@ -185,7 +207,10 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
 
       {/* Course Detail Modal */}
       {detailCourse && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fade-in">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm animate-fade-in"
+          onClick={() => setDetailCourse(null)}
+        >
           <div
             className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border-2 border-gold-400/40 relative"
             onClick={(e) => e.stopPropagation()}
@@ -196,6 +221,9 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
                 src={detailCourse.imageUrl}
                 alt={detailCourse.name}
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  e.currentTarget.src = FALLBACK_GOLF_IMAGE;
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/40 to-black/30" />
 

@@ -585,7 +585,7 @@ export const GOLF_COURSES: GolfCourse[] = [
     ],
     facilities: ['18홀 최신 챔피언십 코스', '최신 모던 클럽하우스', '드라이빙 레인지 & 어프로치 연습장', 'VIP 라운지'],
     description: '베트남 중부 해안의 거대한 모래 언덕을 배경으로 잭 니클라우스 사단이 새롭게 선보인 최첨단 럭셔리 링크스 코스입니다. 끝없이 펼쳐지는 해안 사구와 도전적인 벙커 배치가 일품이며, 최상급 잔디 관리 상태로 오픈 직후부터 폭발적인 인기를 끌고 있습니다.',
-    imageUrl: '/images/golf/goldensands.jpg'
+    imageUrl: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1000&q=80'
   }
 ];
 
@@ -599,7 +599,7 @@ export const VEHICLE_OPTIONS: VehicleOption[] = [
     bestFor: '2~3인 소인원, 부부 동반 골프 & 시내 자유일정',
     description: '골목이 많은 다낭 시내와 맛집 이동에 기동성이 탁월하며, 쾌적한 에어컨과 숙련된 전담 기사가 편안하게 모십니다.',
     features: ['단독 전용 차량 & 기사 포함', '유류비 & 톨게이트비 포함', '차량 내 생수 제공', '24시간 카톡 배차 지원'],
-    imageUrl: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80'
   },
   {
     id: 'van-16s',
@@ -610,7 +610,7 @@ export const VEHICLE_OPTIONS: VehicleOption[] = [
     bestFor: '4인 1팀 또는 8인 2팀 단체 골퍼에게 가장 인기 있는 차종',
     description: '천장이 높고 트렁크 공간이 넓어 골프백과 대형 캐리어를 가득 실어도 탑승 공간이 쾌적합니다. 1팀 골프투어의 필수 차종입니다.',
     features: ['하이루프 넓은 실내 공간', '골프백 대용량 적재 전용 개조', '기사 팁 제외 전 비용 포함', '현지 핫라인 통역 지원'],
-    imageUrl: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1000&q=80'
   },
   {
     id: 'limo-29s',
@@ -621,7 +621,7 @@ export const VEHICLE_OPTIONS: VehicleOption[] = [
     bestFor: '골프 동호회, 법인 워크샵, 3팀 이상 대형 단체 VIP',
     description: '비행기 비즈니스석 같은 안락한 VIP 리무진 독립 시트와 대형 냉장고, 스마트 TV를 갖춘 최고급 의전 차량입니다.',
     features: ['우등 리무진 독립 리클라이닝 시트', 'USB 고속 충전 포트 전 좌석 완비', '골프백 전용 트렁크 룸', 'VIP 의전 전문 기사 배정'],
-    imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1000&q=80'
   }
 ];
 
@@ -634,7 +634,7 @@ export const VILLA_OPTIONS: VillaOption[] = [
     location: '다낭 미케비치 해안가 고급 리조트 단지 내',
     description: '거실에서 프라이빗 인피니티 풀로 바로 연결되며, 몇 걸음만 걸어나가면 에메랄드빛 프라이빗 비치가 펼쳐지는 럭셔리 휴양 빌라입니다.',
     features: ['프라이빗 수영장', '주방 및 다이닝 룸', '매일 아침 객실 조식 딜리버리', '24시간 리조트 보안'],
-    imageUrl: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1000&q=80'
   },
   {
     id: 'luxury-5br',
@@ -644,7 +644,7 @@ export const VILLA_OPTIONS: VillaOption[] = [
     location: '다낭-호이안 중간 몽고메리 골프장 인접 리조트',
     description: '골프 2팀(8인) 이상이 한 공간에서 라운딩 후 단독 BBQ 파티와 수영을 즐길 수 있는 초대형 풀빌라입니다. 완벽한 프라이버시가 보장됩니다.',
     features: ['대형 단독 풀 & 썬베드', '야외 바베큐 가든 파티 가능', '골프장 차량 5분 거리', '전담 하우스키핑 케어'],
-    imageUrl: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80'
+    imageUrl: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80'
   }
 ];
 

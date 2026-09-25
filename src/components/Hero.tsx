@@ -29,6 +29,9 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
           src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=2400&q=88"
           alt="다낭 챔피언십 명문 골프 코스 전경"
           className="w-full h-full object-cover object-center opacity-35 scale-105 transform animate-fade-in"
+          onError={(e) => {
+            e.currentTarget.src = 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=2000&q=80';
+          }}
         />
         {/* Layered deep forest green gradient overlays for timeless prestige */}
         <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/70 to-forest-900/80" />
@@ -108,6 +111,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
               <input
                 type="date"
                 value={travelDate}
+                min={new Date().toISOString().split('T')[0]}
                 onChange={(e) => setTravelDate(e.target.value)}
                 className="w-full h-[52px] px-3.5 rounded-xl border border-slate-300 bg-cream-50 text-charcoal-900 font-semibold text-sm focus:outline-none focus:border-forest-800 focus:ring-2 focus:ring-forest-800/10 cursor-pointer"
               />

@@ -13,6 +13,9 @@ import {
   ArrowRight
 } from 'lucide-react';
 
+const FALLBACK_RESORT_IMAGE = 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80';
+const FALLBACK_VEHICLE_IMAGE = 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80';
+
 interface AddonServicesProps {
   onSelectService: (serviceType: 'vehicle' | 'villa') => void;
 }
@@ -54,6 +57,9 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                     alt={villa.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
                     loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.src = FALLBACK_RESORT_IMAGE;
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/30 to-transparent" />
 
@@ -197,6 +203,9 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                       alt={veh.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
                       loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.src = FALLBACK_VEHICLE_IMAGE;
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-transparent to-transparent" />
                     <span className="absolute bottom-3 left-4 text-gold-300 text-xs font-bold">

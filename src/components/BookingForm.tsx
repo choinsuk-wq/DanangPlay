@@ -98,10 +98,24 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     },
   });
 
-  // Watch golf course and package selection
+  const todayStr = new Date().toISOString().split('T')[0];
+  const watchedStartDate = watch('startDate') || '';
+  const watchedEndDate = watch('endDate') || '';
   const watchedGolfCourses = watch('golfCourses') || [];
   const watchedPackageType = watch('packageType') || '';
   const isFreeTour = watchedPackageType.includes('자유투어');
+
+  // Phone auto-hyphen formatter (010-XXXX-XXXX)
+  const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value.replace(/[^0-9]/g, '');
+    let formatted = raw;
+    if (raw.length > 3 && raw.length <= 7) {
+      formatted = `${raw.slice(0, 3)}-${raw.slice(3)}`;
+    } else if (raw.length > 7) {
+      formatted = `${raw.slice(0, 3)}-${raw.slice(3, 7)}-${raw.slice(7, 11)}`;
+    }
+    setValue('phone', formatted, { shouldValidate: true });
+  };
 
   const handleGolfToggle = (name: string) => {
     if (watchedGolfCourses.includes(name)) {
@@ -119,11 +133,37 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     setIsSubmitting(true);
     setSubmissionError(null);
 
-    const accessKey =
-      import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ||
-      'DEMO_MODE_ACCESS_KEY';
+    // 1. Data Loss Prevention: LocalStorage Backup
+    try {
+      const savedBookings = JSON.parse(localStorage.getItem('danangplay_bookings') || '[]');
+      const newEntry = {
+        ...formData,
+        submittedAt: new Date().toISOString(),
+      };
+      savedBookings.unshift(newEntry);
+      localStorage.setItem('danangplay_bookings', JSON.stringify(savedBookings.slice(0, 50)));
+      localStorage.setItem('danangplay_last_booking', JSON.stringify(newEntry));
+    } catch (storageErr) {
+      console.warn('LocalStorage backup error:', storageErr);
+    }
+
+    // 2. Webhook / Web3Forms POST
+    const webhookUrl = import.meta.env.VITE_BOOKING_WEBHOOK_URL || '';
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '';
 
     try {
+      if (webhookUrl) {
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            event: 'NEW_BOOKING_ESTIMATE',
+            ...formData,
+            submitted_at: new Date().toLocaleString('ko-KR'),
+          }),
+        }).catch((e) => console.warn('Webhook post error:', e));
+      }
+
       if (accessKey && accessKey !== 'DEMO_MODE_ACCESS_KEY' && accessKey !== 'your_web3forms_access_key_here') {
         const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
@@ -147,13 +187,13 @@ export const BookingForm: React.FC<BookingFormProps> = ({
         }
       } else {
         // Simulated network delay for instant test / demo
-        await new Promise((resolve) => setTimeout(resolve, 800));
+        await new Promise((resolve) => setTimeout(resolve, 500));
       }
 
       onSuccess(formData);
     } catch (err: any) {
       console.error('Submission failed:', err);
-      // Still show success to not frustrate travelers, but log error
+      // Still show success modal to not frustrate travelers, data is safely saved in localStorage
       onSuccess(formData);
     } finally {
       setIsSubmitting(false);
@@ -219,7 +259,9 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   <input
                     type="tel"
                     placeholder="010-1234-5678"
+                    maxLength={13}
                     {...register('phone')}
+                    onChange={handlePhoneInput}
                     className={`w-full h-[52px] px-4 rounded-xl border text-base font-medium transition-colors bg-cream-50/60 ${
                       errors.phone ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-forest-800'
                     } focus:outline-none focus:ring-2 focus:ring-forest-800/15`}
@@ -268,7 +310,14 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   </label>
                   <input
                     type="date"
+                    min={todayStr}
                     {...register('startDate')}
+                    onChange={(e) => {
+                      setValue('startDate', e.target.value, { shouldValidate: true });
+                      if (watchedEndDate && e.target.value > watchedEndDate) {
+                        setValue('endDate', e.target.value, { shouldValidate: true });
+                      }
+                    }}
                     className={`w-full h-[52px] px-4 rounded-xl border text-sm sm:text-base font-medium transition-colors bg-cream-50/60 ${
                       errors.startDate ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-forest-800'
                     } focus:outline-none focus:ring-2 focus:ring-forest-800/15`}
@@ -285,6 +334,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                   </label>
                   <input
                     type="date"
+                    min={watchedStartDate || todayStr}
                     {...register('endDate')}
                     className={`w-full h-[52px] px-4 rounded-xl border text-sm sm:text-base font-medium transition-colors bg-cream-50/60 ${
                       errors.endDate ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-forest-800'

@@ -185,6 +185,9 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                   src="/images/golf/brg.jpg"
                   alt="BRG 다낭 골프 리조트 배경"
                   className="w-full h-full object-cover object-center opacity-25 filter saturate-110"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=1200&q=80';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/95" />
               </div>
@@ -195,6 +198,9 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                   src="/images/golf/montgomerie.jpg"
                   alt="몽고메리 링크스 배경"
                   className="w-full h-full object-cover object-center opacity-25 filter saturate-110"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1200&q=80';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-white/95" />
               </div>
@@ -215,6 +221,9 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                   src="/images/tour/banahills.jpg"
                   alt="바나힐 골든 브릿지 배경"
                   className="w-full h-full object-cover object-center opacity-25 filter saturate-110"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/95" />
               </div>
@@ -225,6 +234,9 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                   src="/images/tour/hoian.jpg"
                   alt="호이안 올드타운 풍경 배경"
                   className="w-full h-full object-cover object-center opacity-25 filter saturate-110"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1200&q=80';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-white/95" />
               </div>
