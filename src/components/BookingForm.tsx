@@ -164,7 +164,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
     <section id="booking" className="py-24 bg-[#F5F4F0] relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-forest-900 text-gold-400 text-xs sm:text-sm font-bold mb-4 shadow-sm border border-gold-400/30">
             <Send className="w-4 h-4 text-gold-400" />
             <span>REAL-TIME ESTIMATE & RESERVATION</span>
@@ -172,9 +172,11 @@ export const BookingForm: React.FC<BookingFormProps> = ({
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 tracking-tight mb-4 font-sans">
             실시간 무료 견적 및 예약 신청
           </h2>
-          <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed">
-            원하시는 일정과 인원을 남겨주시면 담당 매니저가 현지 골프장 및 풀빌라 실시간 티타임을 확인하여<br className="hidden sm:inline" />
-            <strong className="text-forest-900 font-extrabold">카카오톡 맞춤 견적서</strong>를 가장 신속하게 발송해 드립니다.
+          <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed break-keep">
+            <span className="block">원하시는 일정과 인원을 남겨주시면 담당 매니저가 현지 골프장 및 풀빌라 실시간 티타임을 확인하여</span>
+            <span className="block mt-1">
+              <strong className="text-forest-900 font-extrabold">카카오톡 맞춤 견적서</strong>를 가장 신속하게 발송해 드립니다.
+            </span>
           </p>
         </div>
 

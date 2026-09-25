@@ -104,44 +104,49 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
 
         {/* Active Package Overview Card */}
         <div className="bg-[#FAF9F6] rounded-3xl p-6 sm:p-10 shadow-lg border-2 border-[#EBE7DF] mb-12">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-[#EBE7DF]">
-            <div>
-              <div className="flex flex-wrap items-center gap-2 mb-3">
-                <span className="px-3.5 py-1.5 rounded-lg bg-forest-900 text-gold-300 font-extrabold text-xs tracking-wide border border-gold-400/40">
-                  {currentPkg.durationTag}
-                </span>
-                {currentPkg.badge && (
-                  <span className="px-3.5 py-1.5 rounded-lg bg-gold-50 text-gold-700 font-extrabold text-xs flex items-center gap-1 border border-gold-300">
-                    <Sparkles className="w-3.5 h-3.5 text-gold-600" />
-                    {currentPkg.badge}
+          <div className="pb-8 border-b border-[#EBE7DF]">
+            {/* Top Row: Badges, Title & Action Button */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3.5">
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-2.5">
+                  <span className="px-3.5 py-1.5 rounded-lg bg-forest-900 text-gold-300 font-extrabold text-xs tracking-wide border border-gold-400/40">
+                    {currentPkg.durationTag}
                   </span>
-                )}
-              </div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-charcoal-900 mb-3 font-sans">
-                {currentPkg.name}
-              </h3>
-              <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed max-w-3xl">
-                {currentPkg.summary}
-              </p>
-
-              {/* Watersports seasonal notice banner */}
-              {currentPkg.notice && (
-                <div className="mt-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gold-50 border border-gold-300 text-gold-800 text-xs sm:text-sm font-semibold">
-                  <Info className="w-4 h-4 text-gold-600 flex-shrink-0" />
-                  <span>{currentPkg.notice}</span>
+                  {currentPkg.badge && (
+                    <span className="px-3.5 py-1.5 rounded-lg bg-gold-50 text-gold-700 font-extrabold text-xs flex items-center gap-1 border border-gold-300">
+                      <Sparkles className="w-3.5 h-3.5 text-gold-600" />
+                      {currentPkg.badge}
+                    </span>
+                  )}
                 </div>
-              )}
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-charcoal-900 font-sans">
+                  {currentPkg.name}
+                </h3>
+              </div>
+
+              <div className="flex-shrink-0">
+                <button
+                  onClick={() => onSelectPackage(currentPkg.id)}
+                  className="w-full sm:w-auto min-h-[50px] sm:min-h-[54px] px-7 sm:px-8 rounded-xl bg-forest-900 hover:bg-forest-800 text-white font-black text-sm sm:text-base shadow-xl shadow-forest-900/25 flex items-center justify-center gap-2.5 transition-all cursor-pointer border border-forest-700 active:scale-98"
+                >
+                  <span>이 코스로 견적 문의하기</span>
+                  <ArrowRight className="w-4 h-4 text-gold-400 stroke-[2.5]" />
+                </button>
+              </div>
             </div>
 
-            <div className="flex-shrink-0">
-              <button
-                onClick={() => onSelectPackage(currentPkg.id)}
-                className="w-full sm:w-auto min-h-[54px] px-8 rounded-xl bg-forest-900 hover:bg-forest-800 text-white font-black text-base shadow-xl shadow-forest-900/25 flex items-center justify-center gap-2.5 transition-all cursor-pointer border border-forest-700 active:scale-98"
-              >
-                <span>이 코스로 견적 문의하기</span>
-                <ArrowRight className="w-4 h-4 text-gold-400 stroke-[2.5]" />
-              </button>
-            </div>
+            {/* Bottom Row: Full-width Package Summary on one clean line */}
+            <p className="text-charcoal-700 text-sm sm:text-[15px] lg:text-base leading-relaxed tracking-tight break-keep mt-2">
+              {currentPkg.summary}
+            </p>
+
+            {/* Watersports seasonal notice banner */}
+            {currentPkg.notice && (
+              <div className="mt-3.5 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gold-50 border border-gold-300 text-gold-800 text-xs sm:text-sm font-semibold">
+                <Info className="w-4 h-4 text-gold-600 flex-shrink-0" />
+                <span>{currentPkg.notice}</span>
+              </div>
+            )}
           </div>
 
           {/* Key Highlights */}

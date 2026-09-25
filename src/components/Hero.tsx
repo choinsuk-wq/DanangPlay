@@ -51,13 +51,20 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
           </span>
         </h1>
 
-        {/* Subtitle with High Readability */}
-        <p className="max-w-3xl mx-auto text-base sm:text-lg lg:text-xl text-slate-200/90 font-normal leading-relaxed mb-10">
-          항공권만 챙겨오십시오. <strong className="text-gold-300 font-bold">세계 100대 명문 골든 티오프 100% 확정</strong>,{' '}
-          <strong className="text-white font-bold">단독 의전 차량</strong>, 그리고{' '}
-          <strong className="text-white font-bold">최고급 독채 풀빌라</strong>까지<br className="hidden sm:inline" />
-          10년 이상 다낭에 상주한 전담 한국인 총괄 매니저가 처음부터 끝까지 품격 있게 풀케어합니다.
-        </p>
+        {/* Subtitle with High Readability (3 distinct clean lines) */}
+        <div className="max-w-4xl mx-auto text-base sm:text-lg lg:text-xl text-slate-200/90 font-normal leading-relaxed mb-10 space-y-1.5 sm:space-y-1 text-center break-keep">
+          <p className="text-gold-300 font-bold text-lg sm:text-xl">
+            항공권만 챙겨오십시오.
+          </p>
+          <p>
+            <strong className="text-gold-300 font-bold">세계 100대 명문 골든 티오프 100% 확정</strong>,{' '}
+            <strong className="text-white font-bold">단독 의전 차량</strong>, 그리고{' '}
+            <strong className="text-white font-bold">최고급 독채 풀빌라</strong>까지
+          </p>
+          <p className="text-slate-300">
+            10년 이상 다낭에 상주한 전담 한국인 총괄 매니저가 처음부터 끝까지 품격 있게 풀케어합니다.
+          </p>
+        </div>
 
         {/* 2. Quick Consultation Bar [골프장 선택] [희망 일정] [인원수] [원클릭 견적 문의] */}
         <div className="w-full max-w-4xl bg-white rounded-2xl p-4 sm:p-5 shadow-2xl border-2 border-gold-400/40 mb-12 text-left">
