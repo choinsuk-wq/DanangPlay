@@ -8,7 +8,7 @@ export const COMPANY_INFO = {
   koreanContact: '+84 974157108',
   vietnamContact: '+84 974157108',
   kakaoId: 'danangplay_golf',
-  kakaoChannelUrl: 'http://pf.kakao.com/_YxiHdX/chat', // 카카오톡 채널 링크
+  kakaoChannelUrl: 'https://pf.kakao.com/_YxiHdX/chat', // 카카오톡 채널 링크
   address: '254 Vo Nguyen Giap, Phuoc My, Son Tra, Da Nang, Vietnam',
   email: 'reservation@danangplay.com',
   workingHours: '연중무휴 한국시간 08:00 ~ 23:00 (현지 응급지원 24시간)',
