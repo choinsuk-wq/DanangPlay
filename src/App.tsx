@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { TourItinerary } from './components/TourItinerary';
 import { GolfCourses } from './components/GolfCourses';
+import { TourItinerary } from './components/TourItinerary';
 import { AddonServices } from './components/AddonServices';
 import { BookingForm } from './components/BookingForm';
 import { SuccessModal } from './components/SuccessModal';
@@ -15,6 +15,8 @@ export const App: React.FC = () => {
   const [selectedGolfCourse, setSelectedGolfCourse] = useState<string | undefined>(undefined);
   const [needVehiclePrefill, setNeedVehiclePrefill] = useState<boolean>(false);
   const [needVillaPrefill, setNeedVillaPrefill] = useState<boolean>(false);
+  const [prefilledStartDate, setPrefilledStartDate] = useState<string>('');
+  const [prefilledAdultCount, setPrefilledAdultCount] = useState<number>(4);
   const [successBookingData, setSuccessBookingData] = useState<BookingFormValues | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -35,6 +37,19 @@ export const App: React.FC = () => {
     scrollToBooking();
   };
 
+  const handleQuickSearch = (courseName: string, date: string, guestCount: number) => {
+    if (courseName && courseName !== '전체 / 추천 희망') {
+      setSelectedGolfCourse(courseName);
+    }
+    if (date) {
+      setPrefilledStartDate(date);
+    }
+    if (guestCount) {
+      setPrefilledAdultCount(guestCount);
+    }
+    scrollToBooking();
+  };
+
   const handleSelectService = (serviceType: 'vehicle' | 'villa') => {
     if (serviceType === 'vehicle') {
       setNeedVehiclePrefill(true);
@@ -50,31 +65,33 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-white text-charcoal-900 selection:bg-forest-900 selection:text-gold-300">
       {/* Navigation Header */}
       <Header />
 
-      {/* Main Content Area */}
+      {/* Main Content Area in exact requested architecture */}
       <main className="flex-grow">
-        {/* 1. Hero Section */}
-        <Hero onBookClick={scrollToBooking} />
+        {/* 1. Hero Section with Quick Concierge Bar */}
+        <Hero onBookClick={scrollToBooking} onQuickSearch={handleQuickSearch} />
 
-        {/* 2. Tour Itinerary Section */}
-        <TourItinerary onSelectPackage={handleSelectPackage} />
-
-        {/* 3. Golf Courses Grid */}
+        {/* 2. Section 1 - 명문 골프장 컬렉션 (Main Focus) */}
         <GolfCourses onSelectGolfCourse={handleSelectGolfCourse} />
 
-        {/* 4. Add-on Services (Vehicles & Villas) */}
+        {/* 3. Section 2 - 다낭 프라이빗 투어 & 힐링 (Tour Itinerary) */}
+        <TourItinerary onSelectPackage={handleSelectPackage} />
+
+        {/* 4. Section 3 (호텔 & 풀빌라) & Section 4 (전용 의전 차량 & 현지 신뢰 지표) */}
         <AddonServices onSelectService={handleSelectService} />
 
-        {/* 5. Real-time Booking Form */}
+        {/* 5. Section 5 - 실시간 무료 견적 및 예약 신청 */}
         <BookingForm
-          key={`${selectedPackage}-${selectedGolfCourse}-${needVillaPrefill}-${needVehiclePrefill}`}
+          key={`${selectedPackage}-${selectedGolfCourse}-${needVillaPrefill}-${needVehiclePrefill}-${prefilledStartDate}-${prefilledAdultCount}`}
           selectedPackage={selectedPackage}
           selectedGolfCourse={selectedGolfCourse}
           needVehiclePrefill={needVehiclePrefill}
           needVillaPrefill={needVillaPrefill}
+          initialStartDate={prefilledStartDate}
+          initialAdultCount={prefilledAdultCount}
           onSuccess={handleBookingSuccess}
         />
       </main>
@@ -89,7 +106,7 @@ export const App: React.FC = () => {
         bookingData={successBookingData}
       />
 
-      {/* Floating KakaoTalk Quick Button */}
+      {/* Floating Kakao Action Button */}
       <FloatingKakao />
     </div>
   );

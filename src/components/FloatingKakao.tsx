@@ -6,42 +6,43 @@ export const FloatingKakao: React.FC = () => {
   const [showTooltip, setShowTooltip] = useState(true);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-end gap-2 group select-none">
-      {/* Animated Speech Bubble Tooltip */}
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col sm:flex-row items-end sm:items-center gap-2.5 group select-none">
+      {/* Prestigious Speech Bubble: "현지 24시간 실시간 티타임/견적 문의" */}
       {showTooltip && (
-        <div className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-white text-slate-900 shadow-xl border border-slate-200 text-xs font-bold animate-bounce mb-1 relative">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
-          <span>빠른 견적 & 카톡 상담</span>
+        <div className="flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white text-charcoal-900 shadow-2xl border-2 border-gold-400 text-xs sm:text-sm font-extrabold relative animate-bounce">
+          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
+          <span className="text-forest-900 tracking-tight">현지 24시간 실시간 티타임/견적 문의</span>
           <button
             onClick={(e) => {
               e.stopPropagation();
               setShowTooltip(false);
             }}
-            className="text-slate-400 hover:text-slate-700 p-0.5"
-            aria-label="닫기"
+            className="text-slate-400 hover:text-charcoal-800 p-0.5 ml-1 transition-colors cursor-pointer"
+            aria-label="말풍선 닫기"
           >
-            <X className="w-3 h-3" />
+            <X className="w-3.5 h-3.5" />
           </button>
-          {/* Arrow */}
-          <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-white border-t border-r border-slate-200 transform rotate-45" />
+          {/* Bubble Arrow */}
+          <div className="hidden sm:block absolute -right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-t-2 border-r-2 border-gold-400 transform rotate-45" />
         </div>
       )}
 
-      {/* Main Kakao Floating Action Button */}
+      {/* Main Large Floating Action Button */}
       <a
         href={COMPANY_INFO.kakaoChannelUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-14 h-14 rounded-full bg-kakao-bg hover:scale-110 active:scale-95 shadow-2xl shadow-yellow-500/30 flex items-center justify-center text-kakao-text transition-all duration-300 relative"
-        aria-label="카카오톡 빠른상담"
+        className="w-16 h-16 rounded-full bg-kakao-bg hover:scale-105 active:scale-95 shadow-2xl shadow-yellow-500/40 flex items-center justify-center text-kakao-text transition-all duration-300 relative border-2 border-amber-300 cursor-pointer"
+        aria-label="카카오톡 1:1 상담 바로가기"
+        title="현지 24시간 카카오톡 실시간 상담"
       >
-        {/* Glow effect */}
-        <div className="absolute inset-0 rounded-full bg-yellow-400 opacity-40 animate-ping pointer-events-none" />
+        {/* Subtle Luxury Pulsing Glow */}
+        <div className="absolute inset-0 rounded-full bg-yellow-400 opacity-30 animate-ping pointer-events-none" />
 
-        <MessageCircle className="w-7 h-7 fill-kakao-text relative z-10" />
+        <MessageCircle className="w-8 h-8 fill-kakao-text relative z-10" />
 
-        {/* Small live notification badge */}
-        <span className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 text-white rounded-full text-[9px] font-black flex items-center justify-center border-2 border-white">
+        {/* Live Notification Indicator */}
+        <span className="absolute -top-1 -right-1 w-5 h-5 bg-forest-900 text-gold-300 rounded-full text-[10px] font-black flex items-center justify-center border-2 border-white shadow-sm">
           1
         </span>
       </a>

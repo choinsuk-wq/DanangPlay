@@ -13,7 +13,8 @@ import {
   Square,
   AlertCircle,
   Clock,
-  Sparkles
+  Sparkles,
+  ShieldCheck
 } from 'lucide-react';
 
 const bookingSchema = z.object({
@@ -40,6 +41,8 @@ interface BookingFormProps {
   selectedGolfCourse?: string;
   needVehiclePrefill?: boolean;
   needVillaPrefill?: boolean;
+  initialStartDate?: string;
+  initialAdultCount?: number;
   onSuccess: (data: BookingFormValues) => void;
 }
 
@@ -48,6 +51,8 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   selectedGolfCourse,
   needVehiclePrefill = false,
   needVillaPrefill = false,
+  initialStartDate = '',
+  initialAdultCount = 4,
   onSuccess,
 }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -76,9 +81,9 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       customerName: '',
       phone: '',
       kakaoId: '',
-      startDate: '',
+      startDate: initialStartDate || '',
       endDate: '',
-      adultCount: 4,
+      adultCount: initialAdultCount || 4,
       childCount: 0,
       packageType: initialPackageName,
       golfCourses: selectedGolfCourse
@@ -97,6 +102,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const watchedGolfCourses = watch('golfCourses') || [];
   const watchedPackageType = watch('packageType') || '';
   const isFreeTour = watchedPackageType.includes('자유투어');
+
   const handleGolfToggle = (name: string) => {
     if (watchedGolfCourses.includes(name)) {
       setValue(
@@ -155,90 +161,90 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   };
 
   return (
-    <section id="booking" className="py-20 bg-emerald-900/10 relative">
+    <section id="booking" className="py-24 bg-[#F5F4F0] relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-600 text-white text-xs font-bold mb-3 shadow-sm">
-            <Send className="w-3.5 h-3.5" />
-            <span>FAST ESTIMATE & BOOKING</span>
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-forest-900 text-gold-400 text-xs sm:text-sm font-bold mb-4 shadow-sm border border-gold-400/30">
+            <Send className="w-4 h-4 text-gold-400" />
+            <span>REAL-TIME ESTIMATE & RESERVATION</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal-900 tracking-tight mb-4 font-serif">
             실시간 무료 견적 및 예약 신청
           </h2>
-          <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+          <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed">
             원하시는 일정과 인원을 남겨주시면 담당 매니저가 현지 골프장 및 풀빌라 실시간 티타임을 확인하여<br className="hidden sm:inline" />
-            <strong>카카오톡 맞춤 견적서</strong>를 발송해 드립니다.
+            <strong className="text-forest-900 font-extrabold">카카오톡 맞춤 견적서</strong>를 가장 신속하게 발송해 드립니다.
           </p>
         </div>
 
-        {/* Form Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200/80">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* Form Card (Pure White with Gold & Forest Trim) */}
+        <div className="bg-white rounded-3xl p-6 sm:p-12 shadow-2xl border-2 border-[#E5E0D8]">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             {/* 1. Contact Details */}
             <div>
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2 pb-2 border-b border-slate-100">
-                <Users className="w-4 h-4 text-emerald-600" />
-                <span>1. 예약자 정보 (필수)</span>
+              <h3 className="text-base sm:text-lg font-black text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-serif">
+                <Users className="w-5 h-5 text-forest-800" />
+                <span>1. 예약자 기본 정보 (필수)</span>
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {/* Name */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5">
                     고객 성함 <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
                     placeholder="홍길동"
                     {...register('customerName')}
-                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm transition-colors ${
-                      errors.customerName ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-emerald-500'
-                    } focus:outline-none focus:ring-2 focus:ring-emerald-500/20`}
+                    className={`w-full h-[52px] px-4 rounded-xl border text-base font-medium transition-colors bg-cream-50/60 ${
+                      errors.customerName ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-forest-800'
+                    } focus:outline-none focus:ring-2 focus:ring-forest-800/15`}
                   />
                   {errors.customerName && (
-                    <p className="text-rose-500 text-xs mt-1 flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" /> {errors.customerName.message}
+                    <p className="text-rose-500 text-xs mt-1.5 flex items-center gap-1 font-semibold">
+                      <AlertCircle className="w-3.5 h-3.5" /> {errors.customerName.message}
                     </p>
                   )}
                 </div>
 
                 {/* Phone */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5">
                     연락처 (휴대폰) <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="tel"
                     placeholder="010-1234-5678"
                     {...register('phone')}
-                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm transition-colors ${
-                      errors.phone ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-emerald-500'
-                    } focus:outline-none focus:ring-2 focus:ring-emerald-500/20`}
+                    className={`w-full h-[52px] px-4 rounded-xl border text-base font-medium transition-colors bg-cream-50/60 ${
+                      errors.phone ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-forest-800'
+                    } focus:outline-none focus:ring-2 focus:ring-forest-800/15`}
                   />
                   {errors.phone && (
-                    <p className="text-rose-500 text-xs mt-1 flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" /> {errors.phone.message}
+                    <p className="text-rose-500 text-xs mt-1.5 flex items-center gap-1 font-semibold">
+                      <AlertCircle className="w-3.5 h-3.5" /> {errors.phone.message}
                     </p>
                   )}
                 </div>
 
                 {/* Kakao ID */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5">
                     카카오톡 ID <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="text"
-                    placeholder="kakao_id"
+                    placeholder="견적서 받으실 카톡 ID"
                     {...register('kakaoId')}
-                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm transition-colors ${
-                      errors.kakaoId ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-emerald-500'
-                    } focus:outline-none focus:ring-2 focus:ring-emerald-500/20`}
+                    className={`w-full h-[52px] px-4 rounded-xl border text-base font-medium transition-colors bg-cream-50/60 ${
+                      errors.kakaoId ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-forest-800'
+                    } focus:outline-none focus:ring-2 focus:ring-forest-800/15`}
                   />
                   {errors.kakaoId && (
-                    <p className="text-rose-500 text-xs mt-1 flex items-center gap-1">
-                      <AlertCircle className="w-3 h-3" /> {errors.kakaoId.message}
+                    <p className="text-rose-500 text-xs mt-1.5 flex items-center gap-1 font-semibold">
+                      <AlertCircle className="w-3.5 h-3.5" /> {errors.kakaoId.message}
                     </p>
                   )}
                 </div>
@@ -247,71 +253,71 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
             {/* 2. Travel Dates & Passenger Counts */}
             <div>
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2 pb-2 border-b border-slate-100">
-                <Calendar className="w-4 h-4 text-emerald-600" />
+              <h3 className="text-base sm:text-lg font-black text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-serif">
+                <Calendar className="w-5 h-5 text-forest-800" />
                 <span>2. 여행 일정 및 인원 (필수)</span>
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {/* Start Date */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5">
                     출발/체크인 날짜 <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="date"
                     {...register('startDate')}
-                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm transition-colors ${
-                      errors.startDate ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-emerald-500'
-                    } focus:outline-none focus:ring-2 focus:ring-emerald-500/20`}
+                    className={`w-full h-[52px] px-4 rounded-xl border text-sm sm:text-base font-medium transition-colors bg-cream-50/60 ${
+                      errors.startDate ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-forest-800'
+                    } focus:outline-none focus:ring-2 focus:ring-forest-800/15`}
                   />
                   {errors.startDate && (
-                    <p className="text-rose-500 text-xs mt-1">{errors.startDate.message}</p>
+                    <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.startDate.message}</p>
                   )}
                 </div>
 
                 {/* End Date */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5">
                     귀국/체크아웃 날짜 <span className="text-rose-500">*</span>
                   </label>
                   <input
                     type="date"
                     {...register('endDate')}
-                    className={`w-full px-3.5 py-2.5 rounded-xl border text-sm transition-colors ${
-                      errors.endDate ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-emerald-500'
-                    } focus:outline-none focus:ring-2 focus:ring-emerald-500/20`}
+                    className={`w-full h-[52px] px-4 rounded-xl border text-sm sm:text-base font-medium transition-colors bg-cream-50/60 ${
+                      errors.endDate ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-forest-800'
+                    } focus:outline-none focus:ring-2 focus:ring-forest-800/15`}
                   />
                   {errors.endDate && (
-                    <p className="text-rose-500 text-xs mt-1">{errors.endDate.message}</p>
+                    <p className="text-rose-500 text-xs mt-1 font-semibold">{errors.endDate.message}</p>
                   )}
                 </div>
 
                 {/* Adults */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    성인 인원 (골퍼) <span className="text-rose-500">*</span>
+                  <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5">
+                    성인 인원 <span className="text-rose-500">*</span>
                   </label>
                   <select
                     {...register('adultCount', { valueAsNumber: true })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 bg-white"
+                    className="w-full h-[52px] px-4 rounded-xl border border-slate-300 text-base font-medium focus:outline-none focus:border-forest-800 focus:ring-2 focus:ring-forest-800/15 bg-cream-50/60 cursor-pointer"
                   >
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 16, 20].map((num) => (
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 16, 20].map((num) => (
                       <option key={num} value={num}>
-                        성인 {num}명 {num === 4 ? '(1팀 추천)' : num === 8 ? '(2팀 단체)' : ''}
+                        {num}명 {num === 4 ? '(1팀 추천)' : num === 8 ? '(2팀 추천)' : ''}
                       </option>
                     ))}
                   </select>
                 </div>
 
-                {/* Children */}
+                {/* Children / Non-golfers */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5">
                     아동 / 비골퍼 동반
                   </label>
                   <select
                     {...register('childCount', { valueAsNumber: true })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 bg-white"
+                    className="w-full h-[52px] px-4 rounded-xl border border-slate-300 text-base font-medium focus:outline-none focus:border-forest-800 focus:ring-2 focus:ring-forest-800/15 bg-cream-50/60 cursor-pointer"
                   >
                     {[0, 1, 2, 3, 4, 5].map((num) => (
                       <option key={num} value={num}>
@@ -325,19 +331,19 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
             {/* 3. Package and Golf Selection */}
             <div>
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2 pb-2 border-b border-slate-100">
-                <Sparkles className="w-4 h-4 text-emerald-600" />
+              <h3 className="text-base sm:text-lg font-black text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-serif">
+                <Sparkles className="w-5 h-5 text-forest-800" />
                 <span>3. 관심 투어 코스 및 희망 골프장</span>
               </h3>
 
               {/* Package Select */}
-              <div className="mb-4">
-                <label className="block text-xs font-bold text-slate-700 mb-1.5">
+              <div className="mb-5">
+                <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5">
                   관심 코스 선택 <span className="text-rose-500">*</span>
                 </label>
                 <select
                   {...register('packageType')}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 bg-white font-medium"
+                  className="w-full h-[52px] px-4 rounded-xl border border-slate-300 text-base font-semibold focus:outline-none focus:border-forest-800 focus:ring-2 focus:ring-forest-800/15 bg-cream-50/60 cursor-pointer"
                 >
                   <optgroup label="🏌️ 프리미엄 골프 패키지">
                     <option value="3박 4일 명문 골프 & 힐링 코스">3박 4일 명문 골프 & 힐링 코스</option>
@@ -356,15 +362,15 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
               {/* Golf Courses Multi-select Checkboxes */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-2 flex items-center justify-between">
+                <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-2.5 flex items-center justify-between">
                   <span>희망 골프장 선택 (복수 선택 가능)</span>
                   {isFreeTour && (
-                    <span className="text-emerald-700 text-[11px] font-medium bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                    <span className="text-forest-900 text-xs font-bold bg-forest-50 px-2.5 py-0.5 rounded-full border border-forest-200">
                       자유투어는 선택 안 하셔도 무방합니다
                     </span>
                   )}
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                   {GOLF_COURSES.map((course) => {
                     const isChecked = watchedGolfCourses.includes(course.name);
                     return (
@@ -372,18 +378,18 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                         type="button"
                         key={course.id}
                         onClick={() => handleGolfToggle(course.name)}
-                        className={`flex items-center gap-2.5 p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                        className={`flex items-center gap-3 p-3.5 rounded-xl border-2 text-left transition-all cursor-pointer ${
                           isChecked
-                            ? 'border-emerald-600 bg-emerald-50 text-emerald-950 font-bold shadow-sm'
-                            : 'border-slate-200 bg-slate-50/50 hover:bg-slate-100/60 text-slate-700'
+                            ? 'border-forest-800 bg-forest-50 text-forest-950 font-black shadow-sm'
+                            : 'border-slate-200 bg-cream-50/50 hover:bg-cream-100 text-charcoal-800 font-semibold'
                         }`}
                       >
                         {isChecked ? (
-                          <CheckSquare className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                          <CheckSquare className="w-5 h-5 text-forest-800 flex-shrink-0" />
                         ) : (
-                          <Square className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                          <Square className="w-5 h-5 text-slate-400 flex-shrink-0" />
                         )}
-                        <span className="text-xs truncate">{course.name}</span>
+                        <span className="text-xs sm:text-sm truncate">{course.name}</span>
                       </button>
                     );
                   })}
@@ -391,22 +397,22 @@ export const BookingForm: React.FC<BookingFormProps> = ({
               </div>
             </div>
 
-            {/* 4. Additional Options */}
+            {/* 4. Tee-off Time & Add-on Options (Aligned Height & Logic Fixed) */}
             <div>
-              <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2 pb-2 border-b border-slate-100">
-                <Clock className="w-4 h-4 text-emerald-600" />
+              <h3 className="text-base sm:text-lg font-black text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-serif">
+                <Clock className="w-5 h-5 text-forest-800" />
                 <span>4. 티오프 시간대 및 부가 옵션</span>
               </h3>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4 items-end">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-5 items-end">
                 {/* Tee-off time */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
+                  <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5">
                     희망 티오프 시간대
                   </label>
                   <select
                     {...register('teeOffTime')}
-                    className="w-full h-[46px] px-3.5 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:border-emerald-500 bg-white font-medium"
+                    className="w-full h-[52px] px-4 rounded-xl border border-slate-300 text-sm font-bold focus:outline-none focus:border-forest-800 bg-cream-50/60 cursor-pointer"
                   >
                     <option value="오전 07시 ~ 08시대 (추천)">오전 07시 ~ 08시대 (추천)</option>
                     <option value="오전 08시 ~ 09시대">오전 08시 ~ 09시대</option>
@@ -418,16 +424,16 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
                 {/* Need Pool Villa */}
                 <div>
-                  <div className="hidden sm:block text-xs font-bold text-transparent mb-1.5 select-none" aria-hidden="true">
+                  <div className="hidden sm:block text-xs sm:text-sm font-extrabold text-transparent mb-1.5 select-none" aria-hidden="true">
                     부가 옵션
                   </div>
-                  <label className="flex items-center gap-2.5 h-[46px] px-3.5 rounded-xl border border-slate-200 bg-slate-50 w-full cursor-pointer hover:bg-slate-100 transition-colors">
+                  <label className="flex items-center gap-3 h-[52px] px-4 rounded-xl border-2 border-slate-200 bg-cream-50/50 w-full cursor-pointer hover:bg-cream-100 transition-colors">
                     <input
                       type="checkbox"
                       {...register('needPoolVilla')}
-                      className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer flex-shrink-0"
+                      className="w-5 h-5 rounded text-forest-800 focus:ring-forest-800 cursor-pointer flex-shrink-0"
                     />
-                    <span className="text-xs font-semibold text-slate-800">
+                    <span className="text-xs sm:text-sm font-extrabold text-charcoal-900">
                       프라이빗 풀빌라 견적 포함 희망
                     </span>
                   </label>
@@ -435,16 +441,16 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
                 {/* Need Vehicle */}
                 <div>
-                  <div className="hidden sm:block text-xs font-bold text-transparent mb-1.5 select-none" aria-hidden="true">
+                  <div className="hidden sm:block text-xs sm:text-sm font-extrabold text-transparent mb-1.5 select-none" aria-hidden="true">
                     부가 옵션
                   </div>
-                  <label className="flex items-center gap-2.5 h-[46px] px-3.5 rounded-xl border border-slate-200 bg-slate-50 w-full cursor-pointer hover:bg-slate-100 transition-colors">
+                  <label className="flex items-center gap-3 h-[52px] px-4 rounded-xl border-2 border-slate-200 bg-cream-50/50 w-full cursor-pointer hover:bg-cream-100 transition-colors">
                     <input
                       type="checkbox"
                       {...register('needVehicle')}
-                      className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer flex-shrink-0"
+                      className="w-5 h-5 rounded text-forest-800 focus:ring-forest-800 cursor-pointer flex-shrink-0"
                     />
-                    <span className="text-xs font-semibold text-slate-800">
+                    <span className="text-xs sm:text-sm font-extrabold text-charcoal-900">
                       단독 전용 렌터카 배차 희망
                     </span>
                   </label>
@@ -453,48 +459,50 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
               {/* Message / Additional details */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                  추가 요청 사항 (풀빌라 룸 수, 희망 식사, 특별 요청 등)
+                <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5">
+                  기타 요청 사항 (풀빌라 룸 수, 희망 식사, 특별 요청 등)
                 </label>
                 <textarea
                   rows={3}
                   placeholder="예: 3베드룸 오션뷰 풀빌라 희망합니다. 마지막 날 바나힐 관광도 고려 중입니다."
                   {...register('message')}
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20"
+                  className="w-full p-4 rounded-xl border border-slate-300 text-sm font-medium focus:outline-none focus:border-forest-800 focus:ring-2 focus:ring-forest-800/15 bg-cream-50/60 leading-relaxed"
                 ></textarea>
               </div>
             </div>
 
             {/* Error banner if any */}
             {submissionError && (
-              <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-700 flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 flex-shrink-0" />
+              <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-xs sm:text-sm text-rose-700 flex items-center gap-2 font-bold">
+                <AlertCircle className="w-5 h-5 flex-shrink-0" />
                 <span>{submissionError}</span>
               </div>
             )}
 
-            {/* Submit Button */}
+            {/* Submit Button (4060 High-contrast & min-h-[56px] for ease of tapping) */}
             <div className="pt-2">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-black text-base shadow-xl shadow-emerald-600/30 flex items-center justify-center gap-3 transform hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer disabled:opacity-70"
+                className="w-full min-h-[56px] py-4 rounded-2xl bg-forest-900 hover:bg-forest-800 active:scale-99 text-white font-black text-lg shadow-xl shadow-forest-900/30 flex items-center justify-center gap-3 transition-all cursor-pointer border border-forest-700 disabled:opacity-70"
               >
                 {isSubmitting ? (
                   <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>예약 접수 중입니다...</span>
+                    <Loader2 className="w-6 h-6 animate-spin text-gold-400" />
+                    <span>실시간 티타임 확인 및 견적 생성 중...</span>
                   </>
                 ) : (
                   <>
-                    <Send className="w-5 h-5" />
-                    <span>실시간 견적 및 예약 문의 제출하기</span>
+                    <Send className="w-5 h-5 text-gold-400" />
+                    <span className="tracking-wide">카카오톡으로 실시간 맞춤 견적서 신청하기</span>
                   </>
                 )}
               </button>
-              <p className="text-center text-[11px] text-slate-400 mt-2.5">
-                🔒 고객님의 개인정보는 견적 산출 및 카카오톡 상담 이외의 용도로 절대 사용되지 않습니다.
-              </p>
+
+              <div className="flex items-center justify-center gap-2 mt-4 text-xs font-semibold text-charcoal-600">
+                <ShieldCheck className="w-4 h-4 text-forest-800" />
+                <span>입력하신 개인정보는 맞춤 견적서 발송 용도로만 안전하게 사용되며 외부에 일체 제공되지 않습니다.</span>
+              </div>
             </div>
           </form>
         </div>

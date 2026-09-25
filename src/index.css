@@ -9,8 +9,11 @@
   }
   body {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-    color: #1e293b;
-    background-color: #f8fafc;
+    color: #191F28;
+    background-color: #FFFFFF;
+    font-size: 16px;
+    line-height: 1.65;
+    letter-spacing: -0.015em;
     overflow-x: hidden;
   }
 }

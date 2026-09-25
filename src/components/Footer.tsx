@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { COMPANY_INFO, FAQ_ITEMS } from '../data/tourData';
-import { Phone, Mail, MapPin, MessageCircle, ChevronDown, ChevronUp, ShieldCheck, Heart } from 'lucide-react';
+import { Phone, Mail, MessageCircle, ChevronDown, ChevronUp, ShieldCheck } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -10,41 +10,44 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-slate-950 text-slate-400 text-xs border-t border-slate-800/80">
+    <footer className="bg-forest-950 text-slate-300 text-xs sm:text-sm border-t-2 border-forest-900">
       {/* FAQ Section */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-slate-800/60">
-        <div className="text-center mb-10">
-          <span className="text-emerald-400 font-bold text-xs uppercase tracking-wider block mb-1">
-            FAQ & NOTICE
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-b border-forest-900">
+        <div className="text-center mb-12">
+          <span className="text-gold-400 font-extrabold text-xs uppercase tracking-widest block mb-2">
+            FREQUENTLY ASKED QUESTIONS
           </span>
-          <h3 className="text-xl sm:text-2xl font-bold text-white">
+          <h3 className="text-2xl sm:text-4xl font-extrabold text-white font-serif">
             자주 묻는 질문 (FAQ)
           </h3>
+          <p className="text-slate-400 text-sm mt-2">
+            고객님들이 가장 궁금해하시는 핵심 사항을 투명하게 안내해 드립니다.
+          </p>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-3.5">
           {FAQ_ITEMS.map((item, idx) => (
             <div
               key={idx}
-              className="rounded-xl bg-slate-900/90 border border-slate-800 overflow-hidden transition-colors"
+              className="rounded-2xl bg-forest-900/60 border border-forest-800/80 overflow-hidden transition-all"
             >
               <button
                 onClick={() => toggleFaq(idx)}
-                className="w-full p-4 text-left flex items-center justify-between text-slate-200 hover:text-emerald-400 transition-colors cursor-pointer"
+                className="w-full p-5 text-left flex items-center justify-between text-white hover:text-gold-300 transition-colors cursor-pointer"
               >
-                <span className="font-bold text-sm flex items-center gap-2">
-                  <span className="text-emerald-400 font-black">Q.</span>
+                <span className="font-extrabold text-base sm:text-lg flex items-center gap-3">
+                  <span className="text-gold-400 font-black">Q.</span>
                   {item.q}
                 </span>
                 {openFaq === idx ? (
-                  <ChevronUp className="w-4 h-4 text-slate-400" />
+                  <ChevronUp className="w-5 h-5 text-gold-400 flex-shrink-0" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-slate-400" />
+                  <ChevronDown className="w-5 h-5 text-slate-400 flex-shrink-0" />
                 )}
               </button>
               {openFaq === idx && (
-                <div className="px-4 pb-4 pt-1 text-slate-400 text-xs leading-relaxed border-t border-slate-800/60">
-                  <span className="text-amber-400 font-bold mr-1">A.</span>
+                <div className="px-5 pb-5 pt-1 text-slate-200 text-sm sm:text-base leading-relaxed border-t border-forest-800/60">
+                  <span className="text-gold-400 font-black mr-1.5">A.</span>
                   {item.a}
                 </div>
               )}
@@ -54,38 +57,41 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Main Footer Info */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Col 1: Brand & Tagline */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2.5 mb-3">
-              <img src="/logo.png" alt="다낭 자유여행 & 골프투어 로고" className="w-10 h-10 object-contain drop-shadow" />
-              <span className="font-black text-lg text-white">다낭 자유여행 & 골프투어</span>
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/logo.png" alt="DANANG PLAY" className="w-12 h-12 object-contain drop-shadow" />
+              <div>
+                <span className="font-black text-xl text-white font-serif tracking-wider">DANANG PLAY</span>
+                <span className="text-[11px] text-slate-400 block font-sans">다낭 럭셔리 골프 & 프라이빗 투어</span>
+              </div>
             </div>
-            <p className="text-slate-400 text-xs leading-relaxed max-w-md mb-4">
-              다낭 현지 법인 기반의 프리미엄 골프투어 및 맞춤 자유여행 전문 기업입니다.
-              중간 유통 마진 없는 현지 직통 부킹 시스템으로 최적의 견적과 안전한 VIP 단독 서비스를 약속드립니다.
+            <p className="text-slate-400 text-sm leading-relaxed max-w-md mb-5">
+              다낭 현지 법인 기반의 프리미엄 골프투어 및 단독 맞춤 여행 전문 에이전시입니다.
+              중간 수수료 없는 현지 직통 부킹 시스템으로 최적의 골든 티타임과 안전한 VIP 의전 서비스를 약속드립니다.
             </p>
-            <div className="flex items-center gap-2 text-emerald-400 font-semibold text-xs">
-              <ShieldCheck className="w-4 h-4" />
-              <span>베트남 관광청 정식 인가 여행 라이선스 보유</span>
+            <div className="flex items-center gap-2 text-gold-400 font-bold text-xs sm:text-sm">
+              <ShieldCheck className="w-4 h-4 text-gold-400" />
+              <span>베트남 관광청 정식 인가 라이선스 (No. 0402198845)</span>
             </div>
           </div>
 
           {/* Col 2: Fast Contact */}
           <div>
-            <h4 className="text-white font-bold text-sm mb-3">고객센터 & 빠른상담</h4>
-            <ul className="space-y-2 text-slate-400">
-              <li className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-emerald-400" />
+            <h4 className="text-white font-bold text-base mb-4 font-serif">고객센터 & 빠른 상담</h4>
+            <ul className="space-y-3 text-slate-300">
+              <li className="flex items-center gap-2.5">
+                <Phone className="w-4 h-4 text-gold-400 flex-shrink-0" />
                 <span>직통 문의: <a href={`tel:${COMPANY_INFO.vietnamContact}`} className="text-white font-bold hover:underline">{COMPANY_INFO.vietnamContact}</a></span>
               </li>
-              <li className="flex items-center gap-2">
-                <MessageCircle className="w-3.5 h-3.5 text-yellow-400" />
+              <li className="flex items-center gap-2.5">
+                <MessageCircle className="w-4 h-4 text-yellow-400 flex-shrink-0" />
                 <span>카카오톡 채널: <a href={COMPANY_INFO.kakaoChannelUrl} target="_blank" rel="noopener noreferrer" className="text-yellow-400 font-bold hover:underline">상담 바로가기</a></span>
               </li>
-              <li className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-emerald-400" />
+              <li className="flex items-center gap-2.5">
+                <Mail className="w-4 h-4 text-gold-400 flex-shrink-0" />
                 <span>이메일: {COMPANY_INFO.email}</span>
               </li>
             </ul>
@@ -93,32 +99,24 @@ export const Footer: React.FC = () => {
 
           {/* Col 3: Operating Hours */}
           <div>
-            <h4 className="text-white font-bold text-sm mb-3">운영 안내</h4>
-            <p className="text-slate-400 leading-relaxed mb-2">
-              <strong>상담 시간:</strong><br />
+            <h4 className="text-white font-bold text-base mb-4 font-serif">현지 운영 안내</h4>
+            <p className="text-slate-300 leading-relaxed mb-3">
+              <strong className="text-white">상담 시간:</strong><br />
               {COMPANY_INFO.workingHours}
             </p>
-            <p className="text-slate-500 text-[11px] leading-relaxed">
-              * 출발 고객님께는 입국 당일 전담 한국어 매니저가 배정되어 24시간 실시간 핫라인이 가동됩니다.
-            </p>
+            <div className="p-3 rounded-xl bg-forest-900 border border-forest-800 text-xs text-gold-300 font-semibold">
+              * 현지 24시간 긴급 한국어 핫라인 항시 가동
+            </div>
           </div>
         </div>
 
-        {/* Business License Details */}
-        <div className="pt-8 border-t border-slate-900 text-[11px] text-slate-500 space-y-2 leading-relaxed">
-          <p>
-            법인명: {COMPANY_INFO.legalName} | 대표자: {COMPANY_INFO.representative} | 사업자등록번호: {COMPANY_INFO.bizNumber}
-          </p>
-          <p className="flex items-center gap-1">
-            <MapPin className="w-3 h-3 text-slate-600 flex-shrink-0" />
-            현지 본사 주소: {COMPANY_INFO.address}
-          </p>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-4 text-slate-600 text-[10px]">
-            <p>© 2026 DanangPlay Tour & Travel Co., Ltd. All rights reserved.</p>
-            <p className="mt-1 sm:mt-0 flex items-center gap-1">
-              Made with <Heart className="w-3 h-3 text-rose-500 fill-rose-500" /> for Travelers in Danang
-            </p>
+        {/* Corporate Legal & Copyright */}
+        <div className="pt-8 border-t border-forest-900 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <div>
+            <p>상호명: {COMPANY_INFO.legalName} | 대표자: {COMPANY_INFO.representative}</p>
+            <p className="mt-1">사업자등록번호: {COMPANY_INFO.bizNumber} | 현지 주소: {COMPANY_INFO.address}</p>
           </div>
+          <p>© {new Date().getFullYear()} DANANG PLAY TOUR & TRAVEL CO., LTD. All rights reserved.</p>
         </div>
       </div>
     </footer>
