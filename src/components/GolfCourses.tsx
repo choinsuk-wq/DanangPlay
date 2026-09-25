@@ -44,7 +44,7 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
             <Flag className="w-4 h-4 text-gold-400" />
             <span>DANANG PREMIER CHAMPIONSHIP CLUBS</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal-900 tracking-tight mb-4 font-serif">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 tracking-tight mb-4 font-sans">
             다낭 주요 명문 7대 골프장 컬렉션
           </h2>
           <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed">
@@ -106,7 +106,7 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
                     <span className="text-xs font-semibold text-gold-300 tracking-wider block mb-0.5">
                       {course.englishName}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-black text-white leading-tight font-serif">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight font-sans">
                       {course.name}
                     </h3>
                   </div>
@@ -211,7 +211,7 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
                 <span className="text-xs font-semibold text-gold-300 block mb-1">
                   {detailCourse.englishName}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black text-white font-serif">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white font-sans">
                   {detailCourse.name}
                 </h3>
               </div>
@@ -250,7 +250,7 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
 
               {/* Description */}
               <div>
-                <h4 className="text-base font-extrabold text-charcoal-900 mb-2">코스 특징 & 가이드</h4>
+                <h4 className="text-base font-bold text-charcoal-900 mb-2">코스 특징 & 가이드</h4>
                 <p className="text-sm sm:text-base text-charcoal-700 leading-relaxed">
                   {detailCourse.description}
                 </p>
@@ -258,7 +258,7 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
 
               {/* Features List */}
               <div>
-                <h4 className="text-base font-extrabold text-charcoal-900 mb-2.5">주요 시설 & 장점</h4>
+                <h4 className="text-base font-bold text-charcoal-900 mb-2.5">주요 시설 & 장점</h4>
                 <div className="space-y-2">
                   {detailCourse.features.map((feat, fIdx) => (
                     <div key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-charcoal-800">

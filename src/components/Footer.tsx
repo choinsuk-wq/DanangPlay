@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
           <span className="text-gold-400 font-extrabold text-xs uppercase tracking-widest block mb-2">
             FREQUENTLY ASKED QUESTIONS
           </span>
-          <h3 className="text-2xl sm:text-4xl font-extrabold text-white font-serif">
+          <h3 className="text-2xl sm:text-4xl font-bold text-white font-sans">
             자주 묻는 질문 (FAQ)
           </h3>
           <p className="text-slate-400 text-sm mt-2">
@@ -64,7 +64,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3 mb-4">
               <img src="/logo.png" alt="DANANG PLAY" className="w-12 h-12 object-contain drop-shadow" />
               <div>
-                <span className="font-black text-xl text-white font-serif tracking-wider">DANANG PLAY</span>
+                <span className="font-bold text-xl text-white font-sans tracking-wider">DANANG PLAY</span>
                 <span className="text-[11px] text-slate-400 block font-sans">다낭 럭셔리 골프 & 프라이빗 투어</span>
               </div>
             </div>
@@ -80,7 +80,7 @@ export const Footer: React.FC = () => {
 
           {/* Col 2: Fast Contact */}
           <div>
-            <h4 className="text-white font-bold text-base mb-4 font-serif">고객센터 & 빠른 상담</h4>
+            <h4 className="text-white font-bold text-base mb-4 font-sans">고객센터 & 빠른 상담</h4>
             <ul className="space-y-3 text-slate-300">
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-gold-400 flex-shrink-0" />
@@ -99,7 +99,7 @@ export const Footer: React.FC = () => {
 
           {/* Col 3: Operating Hours */}
           <div>
-            <h4 className="text-white font-bold text-base mb-4 font-serif">현지 운영 안내</h4>
+            <h4 className="text-white font-bold text-base mb-4 font-sans">현지 운영 안내</h4>
             <p className="text-slate-300 leading-relaxed mb-3">
               <strong className="text-white">상담 시간:</strong><br />
               {COMPANY_INFO.workingHours}

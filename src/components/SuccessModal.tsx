@@ -124,7 +124,7 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({
             <span className="inline-block px-3 py-1 rounded-full bg-gold-50 text-gold-800 text-xs font-black mb-1 border border-gold-300">
               예약 접수 완료
             </span>
-            <h3 className="text-xl sm:text-2xl font-black text-charcoal-900 font-serif">
+            <h3 className="text-xl sm:text-2xl font-bold text-charcoal-900 font-sans">
               예약 문의가 정상 접수되었습니다!
             </h3>
             <p className="text-sm text-charcoal-600 mt-1">

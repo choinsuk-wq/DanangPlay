@@ -31,7 +31,7 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
             <Compass className="w-4 h-4 text-gold-400" />
             <span>BESPOKE PRIVATE TOUR & HEALING</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal-900 tracking-tight mb-4 font-serif">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 tracking-tight mb-4 font-sans">
             다낭 프라이빗 투어 & 힐링 일정
           </h2>
           <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed">
@@ -117,7 +117,7 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                   </span>
                 )}
               </div>
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-charcoal-900 mb-3 font-serif">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-charcoal-900 mb-3 font-sans">
                 {currentPkg.name}
               </h3>
               <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed max-w-3xl">
@@ -146,7 +146,7 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
 
           {/* Key Highlights */}
           <div className="mt-8">
-            <h4 className="text-xs font-black text-charcoal-500 uppercase tracking-widest mb-4">
+            <h4 className="text-xs font-bold text-charcoal-500 uppercase tracking-widest mb-4">
               핵심 포함 포인트 (KEY HIGHLIGHTS)
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
@@ -164,23 +164,106 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
           </div>
         </div>
 
-        {/* Day-by-Day Timeline */}
-        <div className="space-y-6 mb-16">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xl sm:text-2xl font-black text-charcoal-900 flex items-center gap-2.5 font-serif">
-              <Clock className="w-6 h-6 text-forest-800" />
-              <span>일자별 상세 일정 타임라인</span>
-            </h3>
-            <span className="text-xs sm:text-sm text-charcoal-500 font-medium hidden sm:inline">
-              * 전 일정 전용 차량 및 기사 100% 단독 지원
-            </span>
+        {/* Day-by-Day Timeline Container with Dynamic Ambient Photo Background */}
+        <div className="relative rounded-3xl p-4 sm:p-8 lg:p-10 mb-16 border-2 border-[#E7E2D6] shadow-md overflow-hidden bg-cream-50/60">
+          {/* Dynamic Ambient Background: Golf vs Free Tour */}
+          <div className="absolute inset-0 pointer-events-none select-none overflow-hidden rounded-3xl">
+            {/* GOLF TOUR BACKGROUND: BRG Da Nang & Montgomerie Links */}
+            <div
+              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                activeCategory === 'golf' ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              {/* Upper Section: BRG Da Nang Golf Resort */}
+              <div className="absolute top-0 left-0 right-0 h-3/5 overflow-hidden">
+                <img
+                  src="/images/golf/brg.jpg"
+                  alt="BRG 다낭 골프 리조트 배경"
+                  className="w-full h-full object-cover object-center opacity-25 filter saturate-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/95" />
+              </div>
+
+              {/* Lower Section: Montgomerie Links */}
+              <div className="absolute bottom-0 left-0 right-0 h-3/5 overflow-hidden">
+                <img
+                  src="/images/golf/montgomerie.jpg"
+                  alt="몽고메리 링크스 배경"
+                  className="w-full h-full object-cover object-center opacity-25 filter saturate-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-white/95" />
+              </div>
+
+              {/* Prestige subtle wash */}
+              <div className="absolute inset-0 bg-gradient-to-b from-cream-50/60 via-white/50 to-cream-100/60" />
+            </div>
+
+            {/* FREE TOUR BACKGROUND: Ba Na Hills & Hoi An */}
+            <div
+              className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                activeCategory === 'free' ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              {/* Upper Section: Ba Na Hills Golden Bridge */}
+              <div className="absolute top-0 left-0 right-0 h-3/5 overflow-hidden">
+                <img
+                  src="/images/tour/banahills.jpg"
+                  alt="바나힐 골든 브릿지 배경"
+                  className="w-full h-full object-cover object-center opacity-25 filter saturate-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/95" />
+              </div>
+
+              {/* Lower Section: Hoi An Ancient Town */}
+              <div className="absolute bottom-0 left-0 right-0 h-3/5 overflow-hidden">
+                <img
+                  src="/images/tour/hoian.jpg"
+                  alt="호이안 올드타운 풍경 배경"
+                  className="w-full h-full object-cover object-center opacity-25 filter saturate-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-transparent to-white/95" />
+              </div>
+
+              {/* Prestige subtle wash */}
+              <div className="absolute inset-0 bg-gradient-to-b from-cream-50/60 via-white/50 to-cream-100/60" />
+            </div>
           </div>
 
-          <div className="space-y-6">
+          {/* Timeline Header (Relative to stay above ambient backdrop) */}
+          <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 mb-6 border-b border-[#E2DDD2]">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-forest-900 text-gold-400 flex items-center justify-center shadow-xs flex-shrink-0 border border-gold-400/30">
+                <Clock className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-charcoal-900 flex items-center gap-2 font-sans">
+                  <span>일자별 상세 일정 타임라인</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-forest-800 font-semibold mt-0.5">
+                  {activeCategory === 'golf'
+                    ? '다낭 대표 명문 코스 (BRG 다낭 CC & 몽고메리 링크스) 부킹 일정'
+                    : '다낭 & 호이안 대표 명소 (바나힐스 & 호이안 올드타운) 단독 힐링 일정'}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 self-start sm:self-auto">
+              <span className="text-xs text-charcoal-500 font-medium hidden lg:inline">
+                * 전 일정 전용 차량 및 기사 100% 단독 지원
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/90 text-charcoal-800 border border-[#D5D0C5] shadow-xs backdrop-blur-xs">
+                <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse" />
+                {activeCategory === 'golf' ? '배경: BRG 다낭 CC · 몽고메리' : '배경: 바나힐 · 호이안 풍경'}
+              </span>
+            </div>
+          </div>
+
+          {/* Timeline Cards List (Relative to stay above ambient backdrop) */}
+          <div className="relative z-10 space-y-6">
             {currentPkg.days.map((day) => (
               <div
                 key={day.day}
-                className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border-2 border-[#EBE7DF] hover:border-forest-700/40 hover:shadow-md transition-all"
+                className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-sm border-2 border-[#EBE7DF] hover:border-forest-700/40 hover:bg-white hover:shadow-md transition-all"
               >
                 {/* Day Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100 mb-5">
@@ -266,7 +349,7 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                 <Check className="w-5 h-5 stroke-[3]" />
               </div>
               <div>
-                <h4 className="font-black text-charcoal-900 text-lg font-serif">포함 사항 (INCLUDED)</h4>
+                <h4 className="font-bold text-charcoal-900 text-lg font-sans">포함 사항 (INCLUDED)</h4>
                 <p className="text-xs sm:text-sm text-forest-800 font-bold">100% 단독 행사로 숨겨진 추가 비용 없이 투명하게</p>
               </div>
             </div>
@@ -289,7 +372,7 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                 <X className="w-5 h-5 stroke-[3]" />
               </div>
               <div>
-                <h4 className="font-black text-charcoal-900 text-lg font-serif">불포함 사항 (EXCLUDED)</h4>
+                <h4 className="font-bold text-charcoal-900 text-lg font-sans">불포함 사항 (EXCLUDED)</h4>
                 <p className="text-xs sm:text-sm text-charcoal-500 font-bold">현지에서 직접 지출하시는 실비 안내</p>
               </div>
             </div>

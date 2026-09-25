@@ -67,7 +67,7 @@ export const Header: React.FC = () => {
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
                 <span
-                  className={`font-black text-lg sm:text-2xl tracking-wider transition-colors font-serif ${
+                  className={`font-bold text-lg sm:text-2xl tracking-wider transition-colors font-sans ${
                     isScrolled ? 'text-forest-900' : 'text-white'
                   }`}
                 >

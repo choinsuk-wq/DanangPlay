@@ -31,7 +31,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
               <Home className="w-4 h-4 text-gold-400" />
               <span>PRIVATE RESIDENCES & 5-STAR VILLAS</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal-900 tracking-tight mb-4 font-serif">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 tracking-tight mb-4 font-sans">
               하이엔드 호텔 & 프라이빗 풀빌라
             </h2>
             <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed">
@@ -72,7 +72,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                     <span className="text-xs text-gold-300 font-bold block mb-1">
                       {villa.location}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-black text-white font-serif">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">
                       {villa.name}
                     </h3>
                   </div>
@@ -141,7 +141,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                 <Award className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-lg sm:text-xl font-black text-charcoal-900 font-serif mb-1">
+                <h4 className="text-lg sm:text-xl font-bold text-charcoal-900 font-sans mb-1">
                   5성급 비치 리조트 & 특급 호텔 예약 대행
                 </h4>
                 <p className="text-xs sm:text-sm text-charcoal-600 max-w-2xl leading-relaxed">
@@ -174,7 +174,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
               <Car className="w-4 h-4 text-gold-400" />
               <span>VIP CHAUFFEUR FLEET & GUARANTEE</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-4 font-serif">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 font-sans">
               전용 의전 차량 & 현지 신뢰 보증 지표
             </h2>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
@@ -205,7 +205,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                   </div>
 
                   <div className="p-6">
-                    <h3 className="text-lg sm:text-xl font-black text-white mb-2 font-serif">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 font-sans">
                       {veh.name}
                     </h3>
                     <p className="text-xs sm:text-sm text-slate-300 mb-5 leading-relaxed">
@@ -255,7 +255,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
               <span className="text-gold-400 font-extrabold text-xs uppercase tracking-widest block mb-2">
                 WHY TRAVEL WITH US
               </span>
-              <h3 className="text-2xl sm:text-3xl font-black text-white font-serif">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white font-sans">
                 다낭플레이만의 4대 신뢰 보증 시스템
               </h3>
             </div>
@@ -265,7 +265,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                 <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30">
                   1
                 </div>
-                <h4 className="text-base font-extrabold text-white mb-1.5">10년 이상 다낭 현지 상주</h4>
+                <h4 className="text-base font-bold text-white mb-1.5">10년 이상 다낭 현지 상주</h4>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                   서울 여행사가 하청을 주는 구조가 아닌, 현지 법인 직영 매니저가 직접 모든 일정을 총괄합니다.
                 </p>
@@ -275,7 +275,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                 <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30">
                   2
                 </div>
-                <h4 className="text-base font-extrabold text-white mb-1.5">24시간 한국어 긴급 핫라인</h4>
+                <h4 className="text-base font-bold text-white mb-1.5">24시간 한국어 긴급 핫라인</h4>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                   항공 지연, 골프장 기상 악화, 응급 상황 발생 시 한국어로 24시간 실시간 조율 및 병원/통역 지원.
                 </p>
@@ -285,7 +285,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                 <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30">
                   3
                 </div>
-                <h4 className="text-base font-extrabold text-white mb-1.5">노쇼 방지 티타임 100% 확정</h4>
+                <h4 className="text-base font-bold text-white mb-1.5">노쇼 방지 티타임 100% 확정</h4>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                   골프장과의 직통 계약 라인을 통해 바우처 발행과 티오프를 100% 보증하여 불안감을 원천 차단합니다.
                 </p>
@@ -295,7 +295,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                 <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30">
                   4
                 </div>
-                <h4 className="text-base font-extrabold text-white mb-1.5">베트남 관광청 정식 인가</h4>
+                <h4 className="text-base font-bold text-white mb-1.5">베트남 관광청 정식 인가</h4>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                   정식 여행업 인가 라이선스(No. 0402198845)를 보유한 합법 현지 여행사로 안전한 여행을 보장합니다.
                 </p>

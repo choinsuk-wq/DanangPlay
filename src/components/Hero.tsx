@@ -42,11 +42,11 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
           <span>DANANG PREMIER GOLF & PRIVATE TRAVEL CONCIERGE</span>
         </div>
 
-        {/* Main Prestige Headline (Targeting 40~60 High-end Aesthetic) */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.3] sm:leading-[1.22] mb-6 font-serif">
-          다낭 골프의 <span className="text-gold-400 underline decoration-gold-500/50 underline-offset-8">격(格)</span>을 높이다.
+        {/* Main Headline (Clean, modern Pretendard font) */}
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.3] sm:leading-[1.22] mb-6 font-sans">
+          다낭 골프의 <span className="text-gold-400 underline decoration-gold-500/40 underline-offset-8">격(格)</span>을 높이다.
           <br />
-          <span className="text-2xl sm:text-4xl lg:text-5xl font-sans font-extrabold text-slate-100 block mt-3">
+          <span className="text-xl sm:text-3xl lg:text-4xl font-normal text-slate-100 block mt-3.5 tracking-normal">
             현지 상주 전문가가 완성하는 프리미엄 부킹 & 투어
           </span>
         </h1>

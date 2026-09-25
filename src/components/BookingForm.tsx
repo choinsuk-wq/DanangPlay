@@ -169,7 +169,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
             <Send className="w-4 h-4 text-gold-400" />
             <span>REAL-TIME ESTIMATE & RESERVATION</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-charcoal-900 tracking-tight mb-4 font-serif">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 tracking-tight mb-4 font-sans">
             실시간 무료 견적 및 예약 신청
           </h2>
           <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed">
@@ -183,7 +183,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             {/* 1. Contact Details */}
             <div>
-              <h3 className="text-base sm:text-lg font-black text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-serif">
+              <h3 className="text-base sm:text-lg font-bold text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-sans">
                 <Users className="w-5 h-5 text-forest-800" />
                 <span>1. 예약자 기본 정보 (필수)</span>
               </h3>
@@ -253,7 +253,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
             {/* 2. Travel Dates & Passenger Counts */}
             <div>
-              <h3 className="text-base sm:text-lg font-black text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-serif">
+              <h3 className="text-base sm:text-lg font-bold text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-sans">
                 <Calendar className="w-5 h-5 text-forest-800" />
                 <span>2. 여행 일정 및 인원 (필수)</span>
               </h3>
@@ -331,7 +331,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
             {/* 3. Package and Golf Selection */}
             <div>
-              <h3 className="text-base sm:text-lg font-black text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-serif">
+              <h3 className="text-base sm:text-lg font-bold text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-sans">
                 <Sparkles className="w-5 h-5 text-forest-800" />
                 <span>3. 관심 투어 코스 및 희망 골프장</span>
               </h3>
@@ -399,7 +399,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
             {/* 4. Tee-off Time & Add-on Options (Aligned Height & Logic Fixed) */}
             <div>
-              <h3 className="text-base sm:text-lg font-black text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-serif">
+              <h3 className="text-base sm:text-lg font-bold text-charcoal-900 tracking-tight mb-4 flex items-center gap-2 pb-3 border-b-2 border-[#EBE7DF] font-sans">
                 <Clock className="w-5 h-5 text-forest-800" />
                 <span>4. 티오프 시간대 및 부가 옵션</span>
               </h3>
