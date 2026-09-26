@@ -13,6 +13,7 @@ import { BookingFormValues } from './types/tour';
 export const App: React.FC = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('3n4d');
   const [selectedGolfCourse, setSelectedGolfCourse] = useState<string | undefined>(undefined);
+  const [selectedGolfCourses, setSelectedGolfCourses] = useState<string[]>([]);
   const [needVehiclePrefill, setNeedVehiclePrefill] = useState<boolean>(false);
   const [needVillaPrefill, setNeedVillaPrefill] = useState<boolean>(false);
   const [prefilledStartDate, setPrefilledStartDate] = useState<string>('');
@@ -34,12 +35,19 @@ export const App: React.FC = () => {
 
   const handleSelectGolfCourse = (courseName: string) => {
     setSelectedGolfCourse(courseName);
+    setSelectedGolfCourses([courseName]);
     scrollToBooking();
   };
 
-  const handleQuickSearch = (courseName: string, date: string, guestCount: number) => {
-    if (courseName && courseName !== '전체 / 추천 희망') {
-      setSelectedGolfCourse(courseName);
+  const handleQuickSearch = (courses: string | string[], date: string, guestCount: number) => {
+    if (Array.isArray(courses)) {
+      setSelectedGolfCourses(courses);
+      if (courses.length > 0) {
+        setSelectedGolfCourse(courses[0]);
+      }
+    } else if (courses && courses !== '전체 / 추천 희망') {
+      setSelectedGolfCourse(courses);
+      setSelectedGolfCourses([courses]);
     }
     if (date) {
       setPrefilledStartDate(date);
@@ -85,9 +93,10 @@ export const App: React.FC = () => {
 
         {/* 5. Section 5 - 실시간 무료 견적 및 예약 신청 */}
         <BookingForm
-          key={`${selectedPackage}-${selectedGolfCourse}-${needVillaPrefill}-${needVehiclePrefill}-${prefilledStartDate}-${prefilledAdultCount}`}
+          key={`${selectedPackage}-${selectedGolfCourse}-${selectedGolfCourses.join(',')}-${needVillaPrefill}-${needVehiclePrefill}-${prefilledStartDate}-${prefilledAdultCount}`}
           selectedPackage={selectedPackage}
           selectedGolfCourse={selectedGolfCourse}
+          selectedGolfCourses={selectedGolfCourses}
           needVehiclePrefill={needVehiclePrefill}
           needVillaPrefill={needVillaPrefill}
           initialStartDate={prefilledStartDate}

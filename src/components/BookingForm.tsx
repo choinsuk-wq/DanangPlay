@@ -39,6 +39,7 @@ const bookingSchema = z.object({
 interface BookingFormProps {
   selectedPackage?: string;
   selectedGolfCourse?: string;
+  selectedGolfCourses?: string[];
   needVehiclePrefill?: boolean;
   needVillaPrefill?: boolean;
   initialStartDate?: string;
@@ -49,6 +50,7 @@ interface BookingFormProps {
 export const BookingForm: React.FC<BookingFormProps> = ({
   selectedPackage = '3n4d',
   selectedGolfCourse,
+  selectedGolfCourses = [],
   needVehiclePrefill = false,
   needVillaPrefill = false,
   initialStartDate = '',
@@ -86,11 +88,14 @@ export const BookingForm: React.FC<BookingFormProps> = ({
       adultCount: initialAdultCount || 4,
       childCount: 0,
       packageType: initialPackageName,
-      golfCourses: selectedGolfCourse
-        ? [selectedGolfCourse]
-        : selectedPackage?.includes('free')
-        ? []
-        : ['BRG 다낭 골프 리조트'],
+      golfCourses:
+        selectedGolfCourses && selectedGolfCourses.length > 0
+          ? selectedGolfCourses
+          : selectedGolfCourse
+          ? [selectedGolfCourse]
+          : selectedPackage?.includes('free')
+          ? []
+          : ['BRG 다낭 골프 리조트'],
       needPoolVilla: needVillaPrefill,
       needVehicle: needVehiclePrefill,
       teeOffTime: '오전 07시 ~ 08시대 (추천)',
@@ -312,13 +317,23 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     type="date"
                     min={todayStr}
                     {...register('startDate')}
+                    onClick={(e) => {
+                      try {
+                        (e.currentTarget as HTMLInputElement).showPicker?.();
+                      } catch {}
+                    }}
+                    onFocus={(e) => {
+                      try {
+                        (e.currentTarget as HTMLInputElement).showPicker?.();
+                      } catch {}
+                    }}
                     onChange={(e) => {
                       setValue('startDate', e.target.value, { shouldValidate: true });
                       if (watchedEndDate && e.target.value > watchedEndDate) {
                         setValue('endDate', e.target.value, { shouldValidate: true });
                       }
                     }}
-                    className={`w-full h-[52px] px-4 rounded-xl border text-sm sm:text-base font-medium transition-colors bg-cream-50/60 ${
+                    className={`w-full h-[52px] px-4 rounded-xl border text-sm sm:text-base font-medium transition-colors bg-cream-50/60 cursor-pointer ${
                       errors.startDate ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-forest-800'
                     } focus:outline-none focus:ring-2 focus:ring-forest-800/15`}
                   />
@@ -336,7 +351,17 @@ export const BookingForm: React.FC<BookingFormProps> = ({
                     type="date"
                     min={watchedStartDate || todayStr}
                     {...register('endDate')}
-                    className={`w-full h-[52px] px-4 rounded-xl border text-sm sm:text-base font-medium transition-colors bg-cream-50/60 ${
+                    onClick={(e) => {
+                      try {
+                        (e.currentTarget as HTMLInputElement).showPicker?.();
+                      } catch {}
+                    }}
+                    onFocus={(e) => {
+                      try {
+                        (e.currentTarget as HTMLInputElement).showPicker?.();
+                      } catch {}
+                    }}
+                    className={`w-full h-[52px] px-4 rounded-xl border text-sm sm:text-base font-medium transition-colors bg-cream-50/60 cursor-pointer ${
                       errors.endDate ? 'border-rose-400 bg-rose-50/30' : 'border-slate-300 focus:border-forest-800'
                     } focus:outline-none focus:ring-2 focus:ring-forest-800/15`}
                   />
