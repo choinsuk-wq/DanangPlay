@@ -124,10 +124,10 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({
             <span className="inline-block px-3 py-1 rounded-full bg-gold-50 text-gold-800 text-xs font-black mb-1 border border-gold-300">
               예약 접수 완료
             </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-charcoal-900 font-sans">
+            <h3 className="text-xl sm:text-2xl font-bold text-charcoal-900 font-sans break-keep">
               예약 문의가 정상 접수되었습니다!
             </h3>
-            <p className="text-sm text-charcoal-600 mt-1">
+            <p className="text-sm text-charcoal-600 mt-1 break-keep">
               담당 매니저가 내용을 검토한 후 <strong>카카오톡</strong>으로 신속히 맞춤 견적서를 발송해 드립니다.
             </p>
           </div>
@@ -268,18 +268,18 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({
           <button
             type="button"
             onClick={handleKakaoClick}
-            className="w-full min-h-[52px] rounded-xl bg-kakao-bg hover:brightness-95 active:scale-[0.99] text-kakao-text font-black text-base flex items-center justify-center gap-2.5 shadow-md transition-all cursor-pointer border border-amber-300"
+            className="w-full min-h-[52px] px-3 rounded-xl bg-kakao-bg hover:brightness-95 active:scale-[0.99] text-kakao-text font-black text-sm sm:text-base flex items-center justify-center gap-2 sm:gap-2.5 shadow-md transition-all cursor-pointer border border-amber-300 break-keep"
           >
-            <MessageCircle className="w-5 h-5 fill-kakao-text" />
-            <span>카카오톡으로 견적서 신청하기</span>
+            <MessageCircle className="w-5 h-5 fill-kakao-text flex-shrink-0" />
+            <span className="break-keep">카카오톡으로 견적서 신청하기</span>
           </button>
 
           <button
             type="button"
             onClick={onClose}
-            className="w-full min-h-[50px] rounded-xl bg-cream-100 hover:bg-cream-200 active:scale-[0.99] text-charcoal-900 font-extrabold text-sm sm:text-base border border-slate-300 shadow-xs transition-all flex items-center justify-center cursor-pointer"
+            className="w-full min-h-[50px] px-3 rounded-xl bg-cream-100 hover:bg-cream-200 active:scale-[0.99] text-charcoal-900 font-extrabold text-sm sm:text-base border border-slate-300 shadow-xs transition-all flex items-center justify-center cursor-pointer break-keep"
           >
-            확인 및 창 닫기
+            <span className="break-keep">확인 및 창 닫기</span>
           </button>
         </div>
       </div>

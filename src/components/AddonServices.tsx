@@ -34,10 +34,10 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
               <Home className="w-4 h-4 text-gold-400" />
               <span>PRIVATE RESIDENCES & 5-STAR VILLAS</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 tracking-tight mb-4 font-sans">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 tracking-tight mb-4 font-sans break-keep">
               하이엔드 호텔 & 프라이빗 풀빌라
             </h2>
-            <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed">
+            <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed break-keep">
               라운딩 후 우리 일행만을 위한 단독 수영장과 정원 바베큐 파티.<br className="hidden sm:inline" />
               다낭 미케비치 해안가 및 명문 골프장 인접 3~5베드룸 럭셔리 독채 풀빌라를 엄선하여 안내합니다.
             </p>
@@ -78,7 +78,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                     <span className="text-xs text-gold-300 font-bold block mb-1">
                       {villa.location}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white font-sans">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white font-sans break-keep">
                       {villa.name}
                     </h3>
                   </div>
@@ -112,16 +112,16 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                       </div>
                     </div>
 
-                    <p className="text-sm sm:text-base text-charcoal-700 leading-relaxed mb-5">
+                    <p className="text-sm sm:text-base text-charcoal-700 leading-relaxed mb-5 break-keep">
                       {villa.description}
                     </p>
 
                     {/* Features List */}
                     <div className="grid grid-cols-2 gap-2 mb-6">
                       {villa.features.map((feat, fIdx) => (
-                        <div key={fIdx} className="flex items-center gap-2 text-xs sm:text-sm font-bold text-charcoal-800">
+                        <div key={fIdx} className="flex items-center gap-2 text-xs sm:text-sm font-bold text-charcoal-800 break-keep">
                           <CheckCircle className="w-4 h-4 text-forest-800 flex-shrink-0" />
-                          <span>{feat}</span>
+                          <span className="break-keep">{feat}</span>
                         </div>
                       ))}
                     </div>
@@ -130,10 +130,10 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                   {/* CTA Button */}
                   <button
                     onClick={() => onSelectService('villa')}
-                    className="w-full min-h-[52px] rounded-xl bg-forest-900 hover:bg-forest-800 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-forest-900/20 flex items-center justify-center gap-2 transition-all cursor-pointer border border-forest-700 active:scale-98"
+                    className="w-full min-h-[52px] px-4 rounded-xl bg-forest-900 hover:bg-forest-800 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-forest-900/20 flex items-center justify-center gap-2 transition-all cursor-pointer border border-forest-700 active:scale-98 break-keep"
                   >
-                    <span>이 풀빌라 포함 맞춤 견적 신청하기</span>
-                    <ArrowRight className="w-4 h-4 text-gold-400 stroke-[2.5]" />
+                    <span className="break-keep">이 풀빌라 포함 맞춤 견적 신청하기</span>
+                    <ArrowRight className="w-4 h-4 text-gold-400 stroke-[2.5] flex-shrink-0" />
                   </button>
                 </div>
               </div>
@@ -147,17 +147,17 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                 <Award className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="text-lg sm:text-xl font-bold text-charcoal-900 font-sans mb-1">
+                <h4 className="text-lg sm:text-xl font-bold text-charcoal-900 font-sans mb-1 break-keep">
                   5성급 비치 리조트 & 특급 호텔 예약 대행
                 </h4>
-                <p className="text-xs sm:text-sm text-charcoal-600 max-w-2xl leading-relaxed">
+                <p className="text-xs sm:text-sm text-charcoal-600 max-w-2xl leading-relaxed break-keep">
                   인터컨티넨탈 다낭, 하얏트 리젠시, 쉐라톤 그랜드, 풀만 리조트 등 원하시는 5성급 리조트 객실을 기업 특가 및 골프 패키지와 결합하여 함께 예약해 드립니다.
                 </p>
               </div>
             </div>
             <button
               onClick={() => onSelectService('villa')}
-              className="px-6 min-h-[48px] rounded-xl bg-cream-100 hover:bg-cream-200 border border-slate-300 text-charcoal-900 font-extrabold text-xs sm:text-sm whitespace-nowrap cursor-pointer transition-colors"
+              className="px-6 min-h-[48px] rounded-xl bg-cream-100 hover:bg-cream-200 border border-slate-300 text-charcoal-900 font-extrabold text-xs sm:text-sm whitespace-nowrap cursor-pointer transition-colors break-keep"
             >
               호텔 & 리조트 상담 요청
             </button>
@@ -180,10 +180,10 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
               <Car className="w-4 h-4 text-gold-400" />
               <span>VIP CHAUFFEUR FLEET & GUARANTEE</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 font-sans">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 font-sans break-keep">
               전용 의전 차량 & 현지 신뢰 보증 지표
             </h2>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed break-keep">
               모르는 사람과 조인 없이 오직 우리 일행만 탑승하는 단독 전용 차량.<br className="hidden sm:inline" />
               인원수와 골프백 수납에 완벽히 최적화된 최고급 차량 라인업과 10년 상주 노하우의 신뢰를 드립니다.
             </p>
@@ -214,10 +214,10 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                   </div>
 
                   <div className="p-6">
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 font-sans">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 font-sans break-keep">
                       {veh.name}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-300 mb-5 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-300 mb-5 leading-relaxed break-keep">
                       {veh.description}
                     </p>
 
@@ -225,20 +225,20 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                     <div className="space-y-2.5 mb-5 p-4 rounded-2xl bg-forest-950/80 border border-forest-800 text-xs sm:text-sm">
                       <div className="flex items-center gap-2.5 text-slate-200">
                         <Users className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                        <span><strong>권장 인원:</strong> {veh.capacity}</span>
+                        <span className="break-keep"><strong>권장 인원:</strong> {veh.capacity}</span>
                       </div>
                       <div className="flex items-center gap-2.5 text-slate-200">
                         <Briefcase className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                        <span><strong>골프백 탑재:</strong> <strong className="text-gold-300">{veh.luggage}</strong></span>
+                        <span className="break-keep"><strong>골프백 탑재:</strong> <strong className="text-gold-300">{veh.luggage}</strong></span>
                       </div>
                     </div>
 
                     {/* Features */}
                     <div className="space-y-1.5 mb-2">
                       {veh.features.map((feat, fIdx) => (
-                        <div key={fIdx} className="flex items-center gap-2 text-xs text-slate-300">
+                        <div key={fIdx} className="flex items-center gap-2 text-xs text-slate-300 break-keep">
                           <CheckCircle className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
-                          <span>{feat}</span>
+                          <span className="break-keep">{feat}</span>
                         </div>
                       ))}
                     </div>
@@ -248,10 +248,10 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                 <div className="p-6 pt-0">
                   <button
                     onClick={() => onSelectService('vehicle')}
-                    className="w-full min-h-[50px] rounded-xl bg-forest-800 hover:bg-forest-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer border border-forest-600 active:scale-98"
+                    className="w-full min-h-[50px] px-4 rounded-xl bg-forest-800 hover:bg-forest-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer border border-forest-600 active:scale-98 break-keep"
                   >
-                    <span>이 차량으로 배차 문의</span>
-                    <ArrowRight className="w-4 h-4 text-gold-400" />
+                    <span className="break-keep">이 차량으로 배차 문의</span>
+                    <ArrowRight className="w-4 h-4 text-gold-400 flex-shrink-0" />
                   </button>
                 </div>
               </div>
@@ -259,53 +259,53 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
           </div>
 
           {/* Local Trust Indicators (Targeting 40~60 High-end Reassurance) */}
-          <div className="p-8 sm:p-12 rounded-3xl bg-forest-900/90 border-2 border-gold-400/40 shadow-2xl">
+          <div className="p-6 sm:p-12 rounded-3xl bg-forest-900/90 border-2 border-gold-400/40 shadow-2xl">
             <div className="text-center max-w-2xl mx-auto mb-10">
               <span className="text-gold-400 font-extrabold text-xs uppercase tracking-widest block mb-2">
                 WHY TRAVEL WITH US
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white font-sans">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white font-sans break-keep">
                 다낭플레이만의 4대 신뢰 보증 시스템
               </h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="p-5 rounded-2xl bg-forest-950/60 border border-forest-800">
-                <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30">
+                <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30 flex-shrink-0">
                   1
                 </div>
-                <h4 className="text-base font-bold text-white mb-1.5">10년 이상 다낭 현지 상주</h4>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <h4 className="text-base font-bold text-white mb-1.5 break-keep">10년 이상 다낭 현지 상주</h4>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-keep">
                   서울 여행사가 하청을 주는 구조가 아닌, 현지 법인 직영 매니저가 직접 모든 일정을 총괄합니다.
                 </p>
               </div>
 
               <div className="p-5 rounded-2xl bg-forest-950/60 border border-forest-800">
-                <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30">
+                <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30 flex-shrink-0">
                   2
                 </div>
-                <h4 className="text-base font-bold text-white mb-1.5">24시간 한국어 긴급 핫라인</h4>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <h4 className="text-base font-bold text-white mb-1.5 break-keep">24시간 한국어 긴급 핫라인</h4>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-keep">
                   항공 지연, 골프장 기상 악화, 응급 상황 발생 시 한국어로 24시간 실시간 조율 및 병원/통역 지원.
                 </p>
               </div>
 
               <div className="p-5 rounded-2xl bg-forest-950/60 border border-forest-800">
-                <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30">
+                <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30 flex-shrink-0">
                   3
                 </div>
-                <h4 className="text-base font-bold text-white mb-1.5">노쇼 방지 티타임 100% 확정</h4>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <h4 className="text-base font-bold text-white mb-1.5 break-keep">노쇼 방지 티타임 100% 확정</h4>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-keep">
                   골프장과의 직통 계약 라인을 통해 바우처 발행과 티오프를 100% 보증하여 불안감을 원천 차단합니다.
                 </p>
               </div>
 
               <div className="p-5 rounded-2xl bg-forest-950/60 border border-forest-800">
-                <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30">
+                <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-black mb-3 border border-gold-400/30 flex-shrink-0">
                   4
                 </div>
-                <h4 className="text-base font-bold text-white mb-1.5">베트남 관광청 정식 인가</h4>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <h4 className="text-base font-bold text-white mb-1.5 break-keep">베트남 관광청 정식 인가</h4>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-keep">
                   정식 여행업 인가 라이선스(No. 0402198845)를 보유한 합법 현지 여행사로 안전한 여행을 보장합니다.
                 </p>
               </div>

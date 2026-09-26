@@ -78,7 +78,7 @@ export const Header: React.FC = () => {
                 </span>
               </div>
               <span
-                className={`text-[11px] font-medium tracking-wide transition-colors ${
+                className={`text-[11px] font-medium tracking-tight sm:tracking-wide transition-colors break-keep ${
                   isScrolled ? 'text-charcoal-600' : 'text-slate-300'
                 }`}
               >
@@ -199,18 +199,18 @@ export const Header: React.FC = () => {
                 href={COMPANY_INFO.kakaoChannelUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full min-h-[52px] rounded-xl bg-kakao-bg text-kakao-text font-black text-[15px] flex items-center justify-center gap-2 shadow-md active:scale-98 transition-transform"
+                className="w-full min-h-[52px] px-3 rounded-xl bg-kakao-bg text-kakao-text font-black text-sm sm:text-[15px] flex items-center justify-center gap-2 shadow-md active:scale-98 transition-transform break-keep text-center"
               >
-                <MessageCircle className="w-5 h-5 fill-kakao-text" />
-                <span>카카오톡 실시간 티타임 / 견적 문의</span>
+                <MessageCircle className="w-5 h-5 fill-kakao-text flex-shrink-0" />
+                <span className="break-keep">카카오톡 실시간 티타임 / 견적 문의</span>
               </a>
 
               <a
                 href={`tel:${COMPANY_INFO.koreanContact}`}
-                className="w-full min-h-[48px] rounded-xl bg-cream-100 border border-[#E0DCCE] text-charcoal-800 font-bold text-sm flex items-center justify-center gap-2"
+                className="w-full min-h-[48px] px-3 rounded-xl bg-cream-100 border border-[#E0DCCE] text-charcoal-800 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 break-keep text-center"
               >
-                <Phone className="w-4 h-4 text-forest-800" />
-                <span>현지 직통 전화: {COMPANY_INFO.koreanContact}</span>
+                <Phone className="w-4 h-4 text-forest-800 flex-shrink-0" />
+                <span className="break-keep">현지 직통 전화: {COMPANY_INFO.koreanContact}</span>
               </a>
             </div>
           </div>

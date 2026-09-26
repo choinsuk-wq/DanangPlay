@@ -12,20 +12,20 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-forest-950 text-slate-300 text-xs sm:text-sm border-t-2 border-forest-900">
       {/* FAQ Section */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-b border-forest-900">
-        <div className="text-center mb-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 sm:py-20 border-b border-forest-900">
+        <div className="text-center mb-10 sm:mb-12">
           <span className="text-gold-400 font-extrabold text-xs uppercase tracking-widest block mb-2">
             FREQUENTLY ASKED QUESTIONS
           </span>
-          <h3 className="text-2xl sm:text-4xl font-bold text-white font-sans">
+          <h3 className="text-2xl sm:text-4xl font-bold text-white font-sans break-keep">
             자주 묻는 질문 (FAQ)
           </h3>
-          <p className="text-slate-400 text-sm mt-2">
+          <p className="text-slate-400 text-sm mt-2 break-keep">
             고객님들이 가장 궁금해하시는 핵심 사항을 투명하게 안내해 드립니다.
           </p>
         </div>
 
-        <div className="space-y-3.5">
+        <div className="space-y-3 sm:space-y-3.5">
           {FAQ_ITEMS.map((item, idx) => {
             const isOpen = openFaq === idx;
             return (
@@ -37,14 +37,14 @@ export const Footer: React.FC = () => {
                   onClick={() => toggleFaq(idx)}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${idx}`}
-                  className="w-full p-5 text-left flex items-center justify-between text-white hover:text-gold-300 transition-colors cursor-pointer"
+                  className="w-full p-4 sm:p-5 text-left flex items-start justify-between gap-3 text-white hover:text-gold-300 transition-colors cursor-pointer"
                 >
-                  <span className="font-extrabold text-base sm:text-lg flex items-center gap-3">
-                    <span className="text-gold-400 font-black">Q.</span>
-                    {item.q}
+                  <span className="font-extrabold text-sm sm:text-lg flex items-start gap-2.5 sm:gap-3 leading-snug break-keep">
+                    <span className="text-gold-400 font-black flex-shrink-0 mt-0.5">Q.</span>
+                    <span className="break-keep">{item.q}</span>
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
+                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 mt-0.5 ${
                       isOpen ? 'transform rotate-180 text-gold-400' : 'text-slate-400'
                     }`}
                   />
@@ -56,9 +56,9 @@ export const Footer: React.FC = () => {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <div className="px-5 pb-5 pt-1 text-slate-200 text-sm sm:text-base leading-relaxed border-t border-forest-800/60">
-                      <span className="text-gold-400 font-black mr-1.5">A.</span>
-                      {item.a}
+                    <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-2 text-slate-200 text-xs sm:text-base leading-relaxed border-t border-forest-800/60 break-keep">
+                      <span className="text-gold-400 font-black mr-1.5 flex-shrink-0">A.</span>
+                      <span className="break-keep">{item.a}</span>
                     </div>
                   </div>
                 </div>
@@ -80,7 +80,7 @@ export const Footer: React.FC = () => {
                 <span className="text-[11px] text-slate-400 block font-sans">다낭 럭셔리 골프 & 프라이빗 투어</span>
               </div>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-md mb-5">
+            <p className="text-slate-400 text-sm leading-relaxed max-w-md mb-5 break-keep">
               다낭 현지 법인 기반의 프리미엄 골프투어 및 단독 맞춤 여행 전문 에이전시입니다.
               중간 수수료 없는 현지 직통 부킹 시스템으로 최적의 골든 티타임과 안전한 VIP 의전 서비스를 약속드립니다.
             </p>

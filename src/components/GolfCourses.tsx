@@ -63,10 +63,10 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
             <Flag className="w-4 h-4 text-gold-400" />
             <span>DANANG PREMIER CHAMPIONSHIP CLUBS</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 tracking-tight mb-4 font-sans">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 tracking-tight mb-4 font-sans break-keep">
             다낭 주요 명문 7대 골프장 컬렉션
           </h2>
-          <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed">
+          <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed break-keep">
             세계 100대 링크스 코스부터 나이트 라이트 라운딩, 잭 니클라우스와 닉 팔도 설계까지<br className="hidden sm:inline" />
             다낭 최고 등급의 7대 챔피언십 골프장 티타임을 <strong>100% 확정 보장</strong>합니다.
           </p>
@@ -128,7 +128,7 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
                     <span className="text-xs font-semibold text-gold-300 tracking-wider block mb-0.5">
                       {course.englishName}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight font-sans">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight font-sans break-keep">
                       {course.name}
                     </h3>
                   </div>
@@ -150,12 +150,12 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
                     </div>
 
                     {/* Summary */}
-                    <p className="text-sm sm:text-[15px] text-charcoal-700 line-clamp-2 leading-relaxed mb-4">
+                    <p className="text-sm sm:text-[15px] text-charcoal-700 line-clamp-2 leading-relaxed mb-4 break-keep">
                       {course.summary}
                     </p>
 
                     {/* Inclusions Chip: 명확한 포함 내역 칩 (그린피 + 전동카트 + 캐디피 포함) */}
-                    <div className="p-3 rounded-xl bg-forest-50/80 border border-forest-200/80 mb-4 text-xs sm:text-[13px] font-bold text-forest-900 flex items-center gap-2">
+                    <div className="p-3 rounded-xl bg-forest-50/80 border border-forest-200/80 mb-4 text-xs sm:text-[13px] font-bold text-forest-900 flex items-center gap-2 break-keep">
                       <ShieldCheck className="w-4 h-4 text-forest-800 flex-shrink-0" />
                       <div className="flex flex-wrap items-center gap-1.5">
                         <span className="text-gold-700 font-black">부킹 포함:</span>
@@ -184,18 +184,18 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
                   <div className="space-y-2 pt-2 border-t border-slate-100">
                     <button
                       onClick={() => onSelectGolfCourse(course.name)}
-                      className="w-full min-h-[50px] rounded-xl bg-forest-900 hover:bg-forest-800 active:scale-98 text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer border border-forest-700"
+                      className="w-full min-h-[50px] px-3 rounded-xl bg-forest-900 hover:bg-forest-800 active:scale-98 text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer border border-forest-700 break-keep"
                     >
-                      <CalendarCheck className="w-4 h-4 text-gold-400" />
-                      <span>이 골프장으로 견적 문의하기</span>
+                      <CalendarCheck className="w-4 h-4 text-gold-400 flex-shrink-0" />
+                      <span className="break-keep">이 골프장으로 견적 문의하기</span>
                     </button>
 
                     <button
                       onClick={() => setDetailCourse(course)}
-                      className="w-full py-2.5 rounded-xl bg-white hover:bg-cream-100 text-charcoal-700 font-bold text-xs sm:text-sm flex items-center justify-center gap-1 border border-slate-200 transition-colors cursor-pointer"
+                      className="w-full py-2.5 px-3 rounded-xl bg-white hover:bg-cream-100 text-charcoal-700 font-bold text-xs sm:text-sm flex items-center justify-center gap-1 border border-slate-200 transition-colors cursor-pointer break-keep"
                     >
-                      <span>코스 상세 소개 및 시설 보기</span>
-                      <ChevronRight className="w-4 h-4 text-slate-400" />
+                      <span className="break-keep">코스 상세 소개 및 시설 보기</span>
+                      <ChevronRight className="w-4 h-4 text-slate-400 flex-shrink-0" />
                     </button>
                   </div>
                 </div>
@@ -301,19 +301,19 @@ export const GolfCourses: React.FC<GolfCoursesProps> = ({ onSelectGolfCourse }) 
               <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
                 <button
                   onClick={() => handleInquireFromModal(detailCourse.name)}
-                  className="flex-1 min-h-[52px] rounded-xl bg-forest-900 hover:bg-forest-800 text-white font-black text-base flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  className="flex-1 min-h-[52px] px-4 rounded-xl bg-forest-900 hover:bg-forest-800 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg cursor-pointer break-keep"
                 >
-                  <CalendarCheck className="w-4 h-4 text-gold-400" />
-                  <span>이 골프장으로 견적 신청하기</span>
+                  <CalendarCheck className="w-4 h-4 text-gold-400 flex-shrink-0" />
+                  <span className="break-keep">이 골프장으로 견적 신청하기</span>
                 </button>
                 <a
                   href={detailCourse.officialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="sm:w-auto px-5 min-h-[52px] rounded-xl bg-cream-100 hover:bg-cream-200 border border-slate-300 text-charcoal-800 font-bold text-sm flex items-center justify-center gap-1.5"
+                  className="sm:w-auto px-5 min-h-[52px] rounded-xl bg-cream-100 hover:bg-cream-200 border border-slate-300 text-charcoal-800 font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 break-keep"
                 >
-                  <span>공식 사이트 확인</span>
-                  <ExternalLink className="w-4 h-4 text-slate-500" />
+                  <span className="break-keep">공식 사이트 확인</span>
+                  <ExternalLink className="w-4 h-4 text-slate-500 flex-shrink-0" />
                 </a>
               </div>
             </div>

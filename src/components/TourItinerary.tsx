@@ -31,10 +31,10 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
             <Compass className="w-4 h-4 text-gold-400" />
             <span>BESPOKE PRIVATE TOUR & HEALING</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 tracking-tight mb-4 font-sans">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-charcoal-900 tracking-tight mb-4 font-sans break-keep">
             다낭 프라이빗 투어 & 힐링 일정
           </h2>
-          <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed">
+          <p className="text-charcoal-700 text-base sm:text-lg leading-relaxed break-keep">
             골퍼를 위한 <strong>프리미엄 골프투어</strong>와 동반 가족 및 힐링을 위한 <strong>시그니처 자유투어</strong> 중 선택해 보세요.<br className="hidden sm:inline" />
             모든 일정은 100% 단독 전용 의전 차량 행사로 고객님의 항공 스케줄에 맞춰 유연하게 조율됩니다.
           </p>
@@ -45,25 +45,25 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
           <div className="inline-flex p-1.5 rounded-2xl bg-cream-100 border border-[#E0DCCE] w-full max-w-lg shadow-inner">
             <button
               onClick={() => handleCategoryChange('golf')}
-              className={`flex-1 py-3.5 px-4 rounded-xl text-sm sm:text-base font-black transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
+              className={`flex-1 py-3.5 px-4 rounded-xl text-sm sm:text-base font-black transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer break-keep ${
                 activeCategory === 'golf'
                   ? 'bg-forest-900 text-white shadow-lg shadow-forest-900/20 transform scale-[1.02] border border-forest-700'
                   : 'text-charcoal-700 hover:text-charcoal-900 hover:bg-white/60'
               }`}
             >
-              <span className="text-lg">🏌️</span>
-              <span>프리미엄 골프투어</span>
+              <span className="text-lg flex-shrink-0">🏌️</span>
+              <span className="break-keep">프리미엄 골프투어</span>
             </button>
             <button
               onClick={() => handleCategoryChange('free')}
-              className={`flex-1 py-3.5 px-4 rounded-xl text-sm sm:text-base font-black transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer ${
+              className={`flex-1 py-3.5 px-4 rounded-xl text-sm sm:text-base font-black transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer break-keep ${
                 activeCategory === 'free'
                   ? 'bg-forest-900 text-white shadow-lg shadow-forest-900/20 transform scale-[1.02] border border-forest-700'
                   : 'text-charcoal-700 hover:text-charcoal-900 hover:bg-white/60'
               }`}
             >
-              <span className="text-lg">🌴</span>
-              <span>시그니처 자유투어</span>
+              <span className="text-lg flex-shrink-0">🌴</span>
+              <span className="break-keep">시그니처 자유투어</span>
             </button>
           </div>
         </div>
@@ -82,15 +82,15 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                 <button
                   key={pkg.id}
                   onClick={() => setActiveTab(pkg.id)}
-                  className={`flex-1 py-3 px-4 rounded-lg text-xs sm:text-sm font-extrabold transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center cursor-pointer ${
+                  className={`flex-1 py-3 px-3 sm:px-4 rounded-lg text-xs sm:text-sm font-extrabold transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center cursor-pointer break-keep ${
                     isActive
                       ? 'bg-white text-forest-900 shadow-md border border-[#E5E0D8] transform scale-[1.01]'
                       : 'text-charcoal-600 hover:text-charcoal-900 hover:bg-slate-200/50'
                   }`}
                 >
-                  <span className="text-sm sm:text-base">{durationLabel}</span>
+                  <span className="text-xs sm:text-base break-keep">{durationLabel}</span>
                   <span
-                    className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${
+                    className={`text-[11px] font-bold px-2 py-0.5 rounded-full break-keep ${
                       isActive ? 'bg-gold-50 text-gold-700 border border-gold-300' : 'text-slate-400 bg-slate-200/60'
                     }`}
                   >
@@ -103,7 +103,7 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
         </div>
 
         {/* Active Package Overview Card */}
-        <div className="bg-[#FAF9F6] rounded-3xl p-6 sm:p-10 shadow-lg border-2 border-[#EBE7DF] mb-12">
+        <div className="bg-[#FAF9F6] rounded-3xl p-5 sm:p-10 shadow-lg border-2 border-[#EBE7DF] mb-12">
           <div className="pb-8 border-b border-[#EBE7DF]">
             {/* Top Row: Badges, Title & Action Button */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3.5">
@@ -119,7 +119,7 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                     </span>
                   )}
                 </div>
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-charcoal-900 font-sans">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-charcoal-900 font-sans break-keep">
                   {currentPkg.name}
                 </h3>
               </div>
@@ -127,10 +127,10 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
               <div className="flex-shrink-0">
                 <button
                   onClick={() => onSelectPackage(currentPkg.id)}
-                  className="w-full sm:w-auto min-h-[50px] sm:min-h-[54px] px-7 sm:px-8 rounded-xl bg-forest-900 hover:bg-forest-800 text-white font-black text-sm sm:text-base shadow-xl shadow-forest-900/25 flex items-center justify-center gap-2.5 transition-all cursor-pointer border border-forest-700 active:scale-98"
+                  className="w-full sm:w-auto min-h-[50px] sm:min-h-[54px] px-6 sm:px-8 rounded-xl bg-forest-900 hover:bg-forest-800 text-white font-black text-sm sm:text-base shadow-xl shadow-forest-900/25 flex items-center justify-center gap-2.5 transition-all cursor-pointer border border-forest-700 active:scale-98 break-keep"
                 >
-                  <span>이 코스로 견적 문의하기</span>
-                  <ArrowRight className="w-4 h-4 text-gold-400 stroke-[2.5]" />
+                  <span className="break-keep">이 코스로 견적 문의하기</span>
+                  <ArrowRight className="w-4 h-4 text-gold-400 stroke-[2.5] flex-shrink-0" />
                 </button>
               </div>
             </div>
@@ -253,10 +253,10 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                 <Clock className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-charcoal-900 flex items-center gap-2 font-sans">
+                <h3 className="text-xl sm:text-2xl font-bold text-charcoal-900 flex items-center gap-2 font-sans break-keep">
                   <span>일자별 상세 일정 타임라인</span>
                 </h3>
-                <p className="text-xs sm:text-sm text-forest-800 font-semibold mt-0.5">
+                <p className="text-xs sm:text-sm text-forest-800 font-semibold mt-0.5 break-keep">
                   {activeCategory === 'golf'
                     ? '다낭 대표 명문 코스 (BRG 다낭 CC & 몽고메리 링크스) 부킹 일정'
                     : '다낭 & 호이안 대표 명소 (바나힐스 & 호이안 올드타운) 단독 힐링 일정'}
@@ -265,11 +265,11 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
             </div>
 
             <div className="flex items-center gap-2 self-start sm:self-auto">
-              <span className="text-xs text-charcoal-500 font-medium hidden lg:inline">
+              <span className="text-xs text-charcoal-500 font-medium hidden lg:inline break-keep">
                 * 전 일정 전용 차량 및 기사 100% 단독 지원
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/90 text-charcoal-800 border border-[#D5D0C5] shadow-xs backdrop-blur-xs">
-                <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white/90 text-charcoal-800 border border-[#D5D0C5] shadow-xs backdrop-blur-xs break-keep">
+                <span className="w-2 h-2 rounded-full bg-gold-500 animate-pulse flex-shrink-0" />
                 {activeCategory === 'golf' ? '배경: BRG 다낭 CC · 몽고메리' : '배경: 바나힐 · 호이안 풍경'}
               </span>
             </div>
@@ -280,34 +280,34 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
             {currentPkg.days.map((day) => (
               <div
                 key={day.day}
-                className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-sm border-2 border-[#EBE7DF] hover:border-forest-700/40 hover:bg-white hover:shadow-md transition-all"
+                className="bg-white/95 backdrop-blur-sm rounded-2xl p-5 sm:p-8 shadow-sm border-2 border-[#EBE7DF] hover:border-forest-700/40 hover:bg-white hover:shadow-md transition-all"
               >
                 {/* Day Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100 mb-5">
                   <div className="flex items-center gap-3.5">
-                    <span className="px-3.5 py-1.5 rounded-xl bg-forest-900 text-gold-300 font-black text-sm tracking-wider shadow-xs">
+                    <span className="px-3.5 py-1.5 rounded-xl bg-forest-900 text-gold-300 font-black text-sm tracking-wider shadow-xs flex-shrink-0">
                       DAY {day.day}
                     </span>
                     <div>
-                      <h4 className="text-lg sm:text-xl font-bold text-charcoal-900">
+                      <h4 className="text-lg sm:text-xl font-bold text-charcoal-900 break-keep">
                         {day.title}
                       </h4>
-                      <p className="text-xs sm:text-sm text-forest-800 font-bold mt-0.5">
+                      <p className="text-xs sm:text-sm text-forest-800 font-bold mt-0.5 break-keep">
                         {day.subtitle}
                       </p>
                     </div>
                   </div>
 
                   {(day.stay || day.vehicle) && (
-                    <div className="flex flex-wrap items-center gap-3 text-xs font-semibold text-charcoal-600 pt-1 sm:pt-0">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-semibold text-charcoal-600 pt-1 sm:pt-0">
                       {day.stay && (
-                        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-cream-100 border border-[#E5E0D8]">
-                          <Hotel className="w-3.5 h-3.5 text-forest-800" /> {day.stay}
+                        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-cream-100 border border-[#E5E0D8] break-keep">
+                          <Hotel className="w-3.5 h-3.5 text-forest-800 flex-shrink-0" /> {day.stay}
                         </span>
                       )}
                       {day.vehicle && (
-                        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-cream-100 border border-[#E5E0D8]">
-                          <Car className="w-3.5 h-3.5 text-forest-800" /> {day.vehicle}
+                        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-cream-100 border border-[#E5E0D8] break-keep">
+                          <Car className="w-3.5 h-3.5 text-forest-800 flex-shrink-0" /> {day.vehicle}
                         </span>
                       )}
                     </div>
@@ -323,16 +323,16 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
 
                       <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
                         {event.time && (
-                          <span className="text-xs sm:text-sm font-extrabold text-forest-900 w-28 flex-shrink-0 bg-forest-50 px-2 py-0.5 rounded border border-forest-200">
+                          <span className="text-xs sm:text-sm font-extrabold text-forest-900 w-fit sm:w-28 flex-shrink-0 bg-forest-50 px-2 py-0.5 rounded border border-forest-200">
                             {event.time}
                           </span>
                         )}
                         <div>
-                          <p className="text-base font-extrabold text-charcoal-900">
+                          <p className="text-base font-extrabold text-charcoal-900 break-keep">
                             {event.activity}
                           </p>
                           {event.description && (
-                            <p className="text-sm sm:text-[15px] text-charcoal-700 mt-1 leading-relaxed">
+                            <p className="text-sm sm:text-[15px] text-charcoal-700 mt-1 leading-relaxed break-keep">
                               {event.description}
                             </p>
                           )}
@@ -344,10 +344,10 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
 
                 {/* Meals */}
                 {day.meal && (
-                  <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center gap-2.5 text-xs sm:text-sm text-charcoal-700 bg-cream-50 px-4 py-2.5 rounded-xl border border-[#EBE7DF]">
+                  <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center gap-2.5 text-xs sm:text-sm text-charcoal-700 bg-cream-50 px-3.5 sm:px-4 py-2.5 rounded-xl border border-[#EBE7DF] break-keep">
                     <Utensils className="w-4 h-4 text-gold-600 flex-shrink-0" />
-                    <span className="font-extrabold text-charcoal-900">제공 식사:</span>
-                    <span className="text-charcoal-600">
+                    <span className="font-extrabold text-charcoal-900 flex-shrink-0">제공 식사:</span>
+                    <span className="text-charcoal-600 break-keep">
                       조식({day.meal.breakfast || '불포함'}) / 중식({day.meal.lunch || '자유식'}) / 석식({day.meal.dinner || '자유식'})
                     </span>
                   </div>
@@ -360,46 +360,46 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
         {/* Included / Excluded Checklist (Clear 4060 Readability) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Included Card */}
-          <div className="bg-[#FAF9F6] rounded-2xl p-6 sm:p-8 border-2 border-forest-800/30 shadow-md">
+          <div className="bg-[#FAF9F6] rounded-2xl p-5 sm:p-8 border-2 border-forest-800/30 shadow-md">
             <div className="flex items-center gap-3 pb-4 mb-5 border-b border-[#EBE7DF]">
-              <div className="w-9 h-9 rounded-xl bg-forest-900 text-gold-400 flex items-center justify-center font-black">
+              <div className="w-9 h-9 rounded-xl bg-forest-900 text-gold-400 flex items-center justify-center font-black flex-shrink-0">
                 <Check className="w-5 h-5 stroke-[3]" />
               </div>
               <div>
-                <h4 className="font-bold text-charcoal-900 text-lg font-sans">포함 사항 (INCLUDED)</h4>
-                <p className="text-xs sm:text-sm text-forest-800 font-bold">100% 단독 행사로 숨겨진 추가 비용 없이 투명하게</p>
+                <h4 className="font-bold text-charcoal-900 text-base sm:text-lg font-sans break-keep">포함 사항 (INCLUDED)</h4>
+                <p className="text-xs sm:text-sm text-forest-800 font-bold break-keep">100% 단독 행사로 숨겨진 추가 비용 없이 투명하게</p>
               </div>
             </div>
             <ul className="space-y-3">
               {currentPkg.included.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-sm sm:text-base text-charcoal-800 font-medium">
+                <li key={idx} className="flex items-start gap-3 text-sm sm:text-base text-charcoal-800 font-medium break-keep">
                   <span className="w-5 h-5 rounded-full bg-forest-800 text-white flex items-center justify-center flex-shrink-0 mt-0.5">
                     <Check className="w-3 h-3 stroke-[3]" />
                   </span>
-                  <span>{item}</span>
+                  <span className="break-keep">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Excluded Card */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border-2 border-[#EBE7DF] shadow-md">
+          <div className="bg-white rounded-2xl p-5 sm:p-8 border-2 border-[#EBE7DF] shadow-md">
             <div className="flex items-center gap-3 pb-4 mb-5 border-b border-slate-100">
-              <div className="w-9 h-9 rounded-xl bg-slate-100 text-charcoal-600 flex items-center justify-center font-black">
+              <div className="w-9 h-9 rounded-xl bg-slate-100 text-charcoal-600 flex items-center justify-center font-black flex-shrink-0">
                 <X className="w-5 h-5 stroke-[3]" />
               </div>
               <div>
-                <h4 className="font-bold text-charcoal-900 text-lg font-sans">불포함 사항 (EXCLUDED)</h4>
-                <p className="text-xs sm:text-sm text-charcoal-500 font-bold">현지에서 직접 지출하시는 실비 안내</p>
+                <h4 className="font-bold text-charcoal-900 text-base sm:text-lg font-sans break-keep">불포함 사항 (EXCLUDED)</h4>
+                <p className="text-xs sm:text-sm text-charcoal-500 font-bold break-keep">현지에서 직접 지출하시는 실비 안내</p>
               </div>
             </div>
             <ul className="space-y-3">
               {currentPkg.excluded.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-sm sm:text-base text-charcoal-600">
+                <li key={idx} className="flex items-start gap-3 text-sm sm:text-base text-charcoal-600 break-keep">
                   <span className="w-5 h-5 rounded-full bg-slate-200 text-charcoal-700 flex items-center justify-center flex-shrink-0 mt-0.5">
                     <X className="w-3 h-3 stroke-[3]" />
                   </span>
-                  <span>{item}</span>
+                  <span className="break-keep">{item}</span>
                 </li>
               ))}
             </ul>
