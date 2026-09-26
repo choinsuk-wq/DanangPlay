@@ -74,10 +74,10 @@ export const Footer: React.FC = () => {
           {/* Col 1: Brand & Tagline */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <img src="/logo.png" alt="DANANG PLAY" className="w-12 h-12 object-contain drop-shadow" />
+              <img src="/logo.png" alt="다낭 자유여행 & 골프투어" className="w-12 h-12 object-contain drop-shadow" />
               <div>
-                <span className="font-bold text-xl text-white font-sans tracking-wider">DANANG PLAY</span>
-                <span className="text-[11px] text-slate-400 block font-sans">다낭 럭셔리 골프 & 프라이빗 투어</span>
+                <span className="font-bold text-xl text-white font-sans tracking-tight">다낭 자유여행 & 골프투어</span>
+                <span className="text-[11px] text-slate-400 block font-sans">DANANG PLAY • 프리미엄 프라이빗 컨시어지</span>
               </div>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-md mb-5 break-keep">

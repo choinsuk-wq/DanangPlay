@@ -56,7 +56,7 @@ export const Header: React.FC = () => {
             <div className="relative">
               <img
                 src="/logo.png"
-                alt="DANANG PLAY"
+                alt="다낭 자유여행 & 골프투어"
                 className="w-11 h-11 sm:w-12 sm:h-12 object-contain drop-shadow-md group-hover:scale-105 transition-transform flex-shrink-0"
               />
               <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-forest-900 border border-gold-400 rounded-full flex items-center justify-center">
@@ -67,14 +67,14 @@ export const Header: React.FC = () => {
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5">
                 <span
-                  className={`font-bold text-lg sm:text-2xl tracking-wider transition-colors font-sans ${
+                  className={`font-bold text-base sm:text-xl lg:text-2xl tracking-tight transition-colors font-sans ${
                     isScrolled ? 'text-forest-900' : 'text-white'
                   }`}
                 >
-                  DANANG PLAY
+                  다낭 자유여행 & 골프투어
                 </span>
                 <span className="text-[10px] px-1.5 py-0.5 rounded bg-gold-500/20 text-gold-600 font-extrabold tracking-tight border border-gold-400/40 hidden sm:inline-block">
-                  CLUB
+                  DANANG PLAY
                 </span>
               </div>
               <span
@@ -82,7 +82,7 @@ export const Header: React.FC = () => {
                   isScrolled ? 'text-charcoal-600' : 'text-slate-300'
                 }`}
               >
-                다낭 명문 골프 & 프라이빗 투어
+                100% 프라이빗 단독 의전 & 명문 부킹
               </span>
             </div>
           </a>
