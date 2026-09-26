@@ -9,9 +9,12 @@ import { SuccessModal } from './components/SuccessModal';
 import { FloatingKakao } from './components/FloatingKakao';
 import { Footer } from './components/Footer';
 import { BookingFormValues } from './types/tour';
+import { TOUR_PACKAGES } from './data/tourData';
 
 export const App: React.FC = () => {
   const [selectedPackage, setSelectedPackage] = useState<string>('3n4d');
+  const [selectedPackageName, setSelectedPackageName] = useState<string>('3박 4일 명문 골프 & 힐링 코스');
+  const [packageSelectTrigger, setPackageSelectTrigger] = useState<number>(0);
   const [selectedGolfCourse, setSelectedGolfCourse] = useState<string | undefined>(undefined);
   const [selectedGolfCourses, setSelectedGolfCourses] = useState<string[]>([]);
   const [needVehiclePrefill, setNeedVehiclePrefill] = useState<boolean>(false);
@@ -28,8 +31,27 @@ export const App: React.FC = () => {
     }
   };
 
-  const handleSelectPackage = (packageId: string) => {
+  const handleSelectPackage = (packageId: string, packageName?: string) => {
     setSelectedPackage(packageId);
+
+    const pkg = TOUR_PACKAGES.find((p) => p.id === packageId);
+    const resolvedName = packageName || (pkg ? pkg.name : undefined);
+    if (resolvedName) {
+      setSelectedPackageName(resolvedName);
+    }
+
+    if (packageId.includes('free') || (pkg && pkg.category === 'free')) {
+      setSelectedGolfCourses([]);
+      setSelectedGolfCourse(undefined);
+    } else if (packageId === '3n4d') {
+      setSelectedGolfCourses(['BRG 다낭 골프 리조트', '바나힐스 골프클럽']);
+      setSelectedGolfCourse('BRG 다낭 골프 리조트');
+    } else if (packageId === '4n5d') {
+      setSelectedGolfCourses(['바나힐스 골프클럽', 'BRG 다낭 골프 리조트', '호이아나 쇼어스 골프클럽']);
+      setSelectedGolfCourse('바나힐스 골프클럽');
+    }
+
+    setPackageSelectTrigger((prev) => prev + 1);
     scrollToBooking();
   };
 
@@ -93,8 +115,9 @@ export const App: React.FC = () => {
 
         {/* 5. Section 5 - 실시간 무료 견적 및 예약 신청 */}
         <BookingForm
-          key={`${selectedPackage}-${selectedGolfCourse}-${selectedGolfCourses.join(',')}-${needVillaPrefill}-${needVehiclePrefill}-${prefilledStartDate}-${prefilledAdultCount}`}
           selectedPackage={selectedPackage}
+          selectedPackageName={selectedPackageName}
+          packageSelectTrigger={packageSelectTrigger}
           selectedGolfCourse={selectedGolfCourse}
           selectedGolfCourses={selectedGolfCourses}
           needVehiclePrefill={needVehiclePrefill}

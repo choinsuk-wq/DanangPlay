@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -14,7 +14,8 @@ import {
   AlertCircle,
   Clock,
   Sparkles,
-  ShieldCheck
+  ShieldCheck,
+  CheckCircle2
 } from 'lucide-react';
 
 const bookingSchema = z.object({
@@ -38,6 +39,8 @@ const bookingSchema = z.object({
 
 interface BookingFormProps {
   selectedPackage?: string;
+  selectedPackageName?: string;
+  packageSelectTrigger?: number;
   selectedGolfCourse?: string;
   selectedGolfCourses?: string[];
   needVehiclePrefill?: boolean;
@@ -49,6 +52,8 @@ interface BookingFormProps {
 
 export const BookingForm: React.FC<BookingFormProps> = ({
   selectedPackage = '3n4d',
+  selectedPackageName,
+  packageSelectTrigger = 0,
   selectedGolfCourse,
   selectedGolfCourses = [],
   needVehiclePrefill = false,
@@ -109,6 +114,60 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const watchedGolfCourses = watch('golfCourses') || [];
   const watchedPackageType = watch('packageType') || '';
   const isFreeTour = watchedPackageType.includes('자유투어');
+
+  const [appliedNotification, setAppliedNotification] = useState<{
+    title: string;
+    description: string;
+  } | null>(null);
+
+  // Sync package changes whenever selectedPackage, selectedPackageName, or packageSelectTrigger changes
+  useEffect(() => {
+    if (selectedPackage || selectedPackageName) {
+      const targetName =
+        selectedPackageName ||
+        (selectedPackage === '4n5d'
+          ? '4박 5일 황제 골프 & 호이안 완전정복'
+          : selectedPackage === '3n4d'
+          ? '3박 4일 명문 골프 & 힐링 코스'
+          : selectedPackage === '3n4d-free'
+          ? '3박 4일 시그니처 자유투어'
+          : selectedPackage === '4n5d-free'
+          ? '4박 5일 힐링 & 선짜반도 완전정복 자유투어'
+          : '3박 4일 명문 골프 & 힐링 코스');
+
+      setValue('packageType', targetName, { shouldValidate: true });
+
+      if (targetName.includes('자유투어') || selectedPackage?.includes('free')) {
+        setValue('golfCourses', [], { shouldValidate: true });
+        setAppliedNotification({
+          title: `[${targetName}] 코스가 견적 양식에 자동 반영되었습니다.`,
+          description: '전 일정 단독 전용 차량 투어로 설정되었으며, 골프장 선택은 비활성화되었습니다.'
+        });
+      } else {
+        if (selectedGolfCourses && selectedGolfCourses.length > 0) {
+          setValue('golfCourses', selectedGolfCourses, { shouldValidate: true });
+        }
+        setAppliedNotification({
+          title: `[${targetName}] 코스가 견적 양식에 자동 반영되었습니다.`,
+          description:
+            selectedGolfCourses && selectedGolfCourses.length > 0
+              ? `추천 명문 골프장(${selectedGolfCourses.join(', ')})이 함께 선택되었습니다.`
+              : '희망하시는 일정과 세부 정보를 입력하시면 맞춤 견적서가 신속히 발송됩니다.'
+        });
+      }
+    }
+  }, [selectedPackage, selectedPackageName, packageSelectTrigger, selectedGolfCourses, setValue]);
+
+  // Sync golf course changes if selected from GolfCourses section
+  useEffect(() => {
+    if (selectedGolfCourse) {
+      setValue('golfCourses', [selectedGolfCourse], { shouldValidate: true });
+      setAppliedNotification({
+        title: `[${selectedGolfCourse}] 골프장이 견적 양식에 반영되었습니다.`,
+        description: '희망하시는 라운딩 일정과 티타임을 선택해 주세요.'
+      });
+    }
+  }, [selectedGolfCourse, setValue]);
 
   // Phone auto-hyphen formatter (010-XXXX-XXXX)
   const handlePhoneInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -227,6 +286,37 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
         {/* Form Card (Pure White with Gold & Forest Trim) */}
         <div className="bg-white rounded-3xl p-5 sm:p-8 lg:p-12 shadow-2xl border-2 border-[#E5E0D8]">
+          {/* Applied Course Banner (User Request 2) */}
+          {appliedNotification && (
+            <div className="mb-8 p-4 sm:p-5 rounded-2xl bg-forest-900 text-white border-2 border-gold-400 shadow-xl flex items-start sm:items-center justify-between gap-4 animate-fade-in">
+              <div className="flex items-start sm:items-center gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center flex-shrink-0 border border-gold-400/40 mt-0.5 sm:mt-0">
+                  <CheckCircle2 className="w-6 h-6 text-gold-400" />
+                </div>
+                <div>
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-gold-400/20 text-gold-300 text-xs font-bold mb-1 border border-gold-400/30">
+                    <Sparkles className="w-3 h-3 text-gold-400" />
+                    <span>선택 코스 견적서 자동 적용 완료</span>
+                  </div>
+                  <h4 className="text-sm sm:text-base font-extrabold text-white break-keep">
+                    {appliedNotification.title}
+                  </h4>
+                  <p className="text-xs sm:text-[13px] text-slate-300 mt-0.5 break-keep">
+                    {appliedNotification.description}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setAppliedNotification(null)}
+                className="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-forest-800 transition-colors flex-shrink-0 cursor-pointer"
+                title="알림 닫기"
+              >
+                ✕
+              </button>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             {/* 1. Contact Details */}
             <div>
@@ -415,12 +505,21 @@ export const BookingForm: React.FC<BookingFormProps> = ({
 
               {/* Package Select */}
               <div className="mb-5">
-                <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5">
-                  관심 코스 선택 <span className="text-rose-500">*</span>
+                <label className="block text-xs sm:text-sm font-extrabold text-charcoal-800 mb-1.5 flex items-center justify-between">
+                  <span>관심 코스 선택 <span className="text-rose-500">*</span></span>
+                  {appliedNotification && (
+                    <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-gold-100 text-gold-900 border border-gold-300 animate-pulse-subtle">
+                      ✓ 상단에서 선택된 코스 자동 적용됨
+                    </span>
+                  )}
                 </label>
                 <select
                   {...register('packageType')}
-                  className="w-full h-[52px] px-4 rounded-xl border border-slate-300 text-base font-semibold focus:outline-none focus:border-forest-800 focus:ring-2 focus:ring-forest-800/15 bg-cream-50/60 cursor-pointer"
+                  className={`w-full h-[52px] px-4 rounded-xl border text-base font-semibold focus:outline-none focus:border-forest-800 focus:ring-2 focus:ring-forest-800/15 cursor-pointer transition-all ${
+                    appliedNotification
+                      ? 'border-gold-500 ring-2 ring-gold-400/25 bg-gold-50/20'
+                      : 'border-slate-300 bg-cream-50/60'
+                  }`}
                 >
                   <optgroup label="🏌️ 프리미엄 골프 패키지">
                     <option value="3박 4일 명문 골프 & 힐링 코스">3박 4일 명문 골프 & 힐링 코스</option>

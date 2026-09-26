@@ -3,7 +3,7 @@ import { TOUR_PACKAGES } from '../data/tourData';
 import { Clock, Check, X, Sparkles, ArrowRight, Utensils, Hotel, Car, Info, Compass } from 'lucide-react';
 
 interface TourItineraryProps {
-  onSelectPackage: (packageId: string) => void;
+  onSelectPackage: (packageId: string, packageName?: string) => void;
 }
 
 export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage }) => {
@@ -26,7 +26,7 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
     <section id="itinerary" className="py-24 bg-white relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-8">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-forest-900 text-gold-400 text-xs sm:text-sm font-bold mb-4 border border-gold-400/30 shadow-sm">
             <Compass className="w-4 h-4 text-gold-400" />
             <span>BESPOKE PRIVATE TOUR & HEALING</span>
@@ -38,6 +38,32 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
             골퍼를 위한 <strong>프리미엄 골프투어</strong>와 동반 가족 및 힐링을 위한 <strong>시그니처 자유투어</strong> 중 선택해 보세요.<br className="hidden sm:inline" />
             모든 일정은 100% 단독 전용 의전 차량 행사로 고객님의 항공 스케줄에 맞춰 유연하게 조율됩니다.
           </p>
+        </div>
+
+        {/* 💡 Guidance Notice Banner: 옵션 선택 및 실시간 견적 연동 안내 (User Request 1) */}
+        <div className="max-w-4xl mx-auto mb-9 p-4 sm:p-5 rounded-2xl bg-[#F7F5F0] border-2 border-gold-400/60 shadow-md flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+          <div className="w-12 h-12 rounded-2xl bg-forest-900 text-gold-400 flex items-center justify-center flex-shrink-0 shadow-md border border-gold-400/40">
+            <Sparkles className="w-6 h-6 text-gold-400" />
+          </div>
+          <div className="flex-1">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-1">
+              <span className="text-sm sm:text-base font-extrabold text-forest-950">
+                투어 옵션 선택 및 실시간 견적 연동 안내
+              </span>
+              <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-gold-500/20 text-gold-800 border border-gold-400/40">
+                원클릭 견적서 자동 반영
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-charcoal-700 leading-relaxed break-keep">
+              아래 <strong>투어 옵션 탭([골프투어] / [자유투어] 및 [3박4일] / [4박5일])</strong>을 선택하시면 일자별 세부 일정, 포함/불포함 내역을 자세히 보실 수 있습니다. 코스 확인 후 오른쪽 <strong>[이 코스로 견적 문의하기]</strong> 버튼을 누르시면 해당 코스가 아래 견적서에 자동 반영되어 즉시 맞춤 상담이 진행됩니다.
+            </p>
+          </div>
+        </div>
+
+        {/* Tab Helper Hint */}
+        <div className="text-center text-xs sm:text-sm font-extrabold text-forest-900 mb-3 flex items-center justify-center gap-1.5">
+          <Sparkles className="w-4 h-4 text-gold-500" />
+          <span>아래 탭을 클릭하여 상세 일정을 확인해 보세요 (실시간 코스 전환)</span>
         </div>
 
         {/* 1. Category Switcher (Golf vs Free Tour) */}
@@ -124,14 +150,17 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                 </h3>
               </div>
 
-              <div className="flex-shrink-0">
+              <div className="flex-shrink-0 text-center sm:text-right">
                 <button
-                  onClick={() => onSelectPackage(currentPkg.id)}
-                  className="w-full sm:w-auto min-h-[50px] sm:min-h-[54px] px-6 sm:px-8 rounded-xl bg-forest-900 hover:bg-forest-800 text-white font-black text-sm sm:text-base shadow-xl shadow-forest-900/25 flex items-center justify-center gap-2.5 transition-all cursor-pointer border border-forest-700 active:scale-98 break-keep"
+                  onClick={() => onSelectPackage(currentPkg.id, currentPkg.name)}
+                  className="w-full sm:w-auto min-h-[50px] sm:min-h-[54px] px-6 sm:px-8 rounded-xl bg-forest-900 hover:bg-forest-800 text-white font-black text-sm sm:text-base shadow-xl shadow-forest-900/25 flex items-center justify-center gap-2.5 transition-all cursor-pointer border border-forest-700 active:scale-98 break-keep group"
                 >
                   <span className="break-keep">이 코스로 견적 문의하기</span>
-                  <ArrowRight className="w-4 h-4 text-gold-400 stroke-[2.5] flex-shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-gold-400 stroke-[2.5] flex-shrink-0 group-hover:translate-x-1 transition-transform" />
                 </button>
+                <span className="block text-[11px] text-charcoal-500 font-semibold mt-1.5 break-keep">
+                  * 클릭 시 아래 [실시간 무료 견적] 양식에 본 코스가 즉시 반영됩니다.
+                </span>
               </div>
             </div>
 
@@ -404,6 +433,29 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
               ))}
             </ul>
           </div>
+        </div>
+
+        {/* Bottom CTA Card after reviewing full itinerary */}
+        <div className="mt-12 bg-forest-900 rounded-3xl p-6 sm:p-8 text-white border-2 border-gold-400 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-400/20 text-gold-300 text-xs font-bold mb-2 border border-gold-400/30">
+              <Sparkles className="w-3.5 h-3.5 text-gold-400" />
+              <span>현재 확인 중인 코스: {currentPkg.durationTag}</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-black text-white break-keep">
+              [{currentPkg.name}] 로 여행을 떠나시겠습니까?
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 mt-1 break-keep">
+              버튼을 누르시면 본 코스가 아래 [실시간 무료 견적] 양식에 자동 입력되어 바로 상담이 가능합니다.
+            </p>
+          </div>
+          <button
+            onClick={() => onSelectPackage(currentPkg.id, currentPkg.name)}
+            className="w-full md:w-auto min-h-[52px] px-8 rounded-xl bg-gold-500 hover:bg-gold-400 active:scale-98 text-forest-950 font-black text-sm sm:text-base shadow-lg shadow-gold-500/30 flex items-center justify-center gap-2 transition-all cursor-pointer flex-shrink-0 break-keep group"
+          >
+            <span>이 코스로 견적 문의하기</span>
+            <ArrowRight className="w-4 h-4 text-forest-950 stroke-[3] group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </div>
     </section>
