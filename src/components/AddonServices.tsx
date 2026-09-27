@@ -265,7 +265,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                 WHY TRAVEL WITH US
               </span>
               <h3 className="text-2xl sm:text-3xl font-bold text-white font-sans break-keep">
-                다낭플레이만의 4대 신뢰 보증 시스템
+                4대 신뢰 보증 시스템
               </h3>
             </div>
 
