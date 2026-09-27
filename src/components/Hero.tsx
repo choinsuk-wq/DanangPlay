@@ -127,7 +127,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
 
     const guestText =
       guestCount >= 20
-        ? '20인 이상 (대형 단체)'
+        ? '그 외 동호회 및 단체 (맞춤 상담)'
         : guestCount === 4
         ? '4인 (정규 1팀 추천)'
         : guestCount === 8
@@ -395,17 +395,8 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
                   <option value={2}>2인 (2인 프라이빗 라운딩)</option>
                   <option value={3}>3인 (3인 1팀 라운딩)</option>
                 </optgroup>
-                <optgroup label="👥 중규모 팀 (5~11인)">
-                  <option value={5}>5인 (2팀 분할 플레이)</option>
-                  <option value={6}>6인 (2팀 분할 플레이)</option>
-                  <option value={7}>7인 (2팀 분할 플레이)</option>
-                  <option value={9}>9인 (3팀 분할 플레이)</option>
-                  <option value={10}>10인 (3팀 분할 플레이)</option>
-                  <option value={11}>11인 (3팀 분할 플레이)</option>
-                </optgroup>
-                <optgroup label="🏢 대형 단체 (14인~20인+)">
-                  <option value={14}>14인 (대형 모임)</option>
-                  <option value={20}>20인 이상 (VIP 기업/동호회 단체)</option>
+                <optgroup label="🏢 그 외 동호회 및 단체">
+                  <option value={20}>그 외 동호회 및 단체 (인원 맞춤 상담)</option>
                 </optgroup>
               </select>
             </div>
