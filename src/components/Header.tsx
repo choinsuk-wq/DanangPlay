@@ -24,6 +24,7 @@ export const Header: React.FC = () => {
     { name: '호텔 & 풀빌라', href: '#villas' },
     { name: '전용 차량', href: '#vehicles' },
     { name: '실시간 견적', href: '#booking' },
+    { name: 'FAQ', href: '#faq' },
   ];
 
   const handleNavClick = (href: string) => {
@@ -65,18 +66,13 @@ export const Header: React.FC = () => {
             </div>
 
             <div className="flex flex-col">
-              <div className="flex items-center gap-1.5">
-                <span
-                  className={`font-bold text-base sm:text-xl lg:text-2xl tracking-tight transition-colors font-sans ${
-                    isScrolled ? 'text-forest-900' : 'text-white'
-                  }`}
-                >
-                  다낭 자유여행 & 골프투어
-                </span>
-                <span className="text-[10px] px-1.5 py-0.5 rounded bg-gold-500/20 text-gold-600 font-extrabold tracking-tight border border-gold-400/40 hidden sm:inline-block">
-                  DANANG PLAY
-                </span>
-              </div>
+              <span
+                className={`font-bold text-base sm:text-xl lg:text-2xl tracking-tight transition-colors font-sans ${
+                  isScrolled ? 'text-forest-900' : 'text-white'
+                }`}
+              >
+                다낭 자유여행 & 골프투어
+              </span>
               <span
                 className={`text-[11px] font-medium tracking-tight sm:tracking-wide transition-colors break-keep ${
                   isScrolled ? 'text-charcoal-600' : 'text-slate-300'
@@ -88,7 +84,7 @@ export const Header: React.FC = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navLinks.map((link) => (
               <button
                 key={link.name}

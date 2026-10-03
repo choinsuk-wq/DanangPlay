@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="bg-forest-950 text-slate-300 text-xs sm:text-sm border-t-2 border-forest-900">
       {/* FAQ Section */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 sm:py-20 border-b border-forest-900">
+      <div id="faq" className="scroll-mt-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 sm:py-20 border-b border-forest-900">
         <div className="text-center mb-10 sm:mb-12">
           <span className="text-gold-400 font-extrabold text-xs uppercase tracking-widest block mb-2">
             FREQUENTLY ASKED QUESTIONS
