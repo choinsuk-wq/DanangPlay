@@ -57,8 +57,10 @@ export const Footer: React.FC = () => {
                 >
                   <div className="overflow-hidden">
                     <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-2 text-slate-200 text-xs sm:text-base leading-relaxed border-t border-forest-800/60 break-keep">
-                      <span className="text-gold-400 font-black mr-1.5 flex-shrink-0">A.</span>
-                      <span className="break-keep">{item.a}</span>
+                      <div className="flex items-start gap-2.5">
+                        <span className="text-gold-400 font-black flex-shrink-0 mt-0.5">A.</span>
+                        <div className="break-keep whitespace-pre-line text-slate-300 leading-relaxed">{item.a}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
