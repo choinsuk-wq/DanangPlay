@@ -262,7 +262,7 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
           <div className="p-6 sm:p-12 rounded-3xl bg-forest-900/90 border-2 border-gold-400/40 shadow-2xl">
             <div className="text-center max-w-2xl mx-auto mb-10">
               <span className="text-gold-400 font-extrabold text-xs uppercase tracking-widest block mb-2">
-                WHY TRAVEL WITH US
+                VIETNAM LOCAL OFFICIAL GUARANTEE
               </span>
               <h3 className="text-2xl sm:text-3xl font-bold text-white font-sans break-keep">
                 4대 신뢰 보증 시스템
@@ -305,9 +305,12 @@ export const AddonServices: React.FC<AddonServicesProps> = ({ onSelectService })
                   4
                 </div>
                 <h4 className="text-base font-bold text-white mb-1.5 break-keep">베트남 관광청 정식 인가</h4>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-keep">
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-keep mb-2">
                   정식 여행업 인가 라이선스(No. 0402198845)를 보유한 합법 현지 여행사로 안전한 여행을 보장합니다.
                 </p>
+                <span className="inline-block px-2.5 py-0.5 rounded-md bg-gold-500/20 text-gold-300 text-[11px] font-black border border-gold-400/40">
+                  라이선스 No. 0402198845
+                </span>
               </div>
             </div>
           </div>

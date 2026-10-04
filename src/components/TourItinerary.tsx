@@ -22,6 +22,29 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
     }
   };
 
+  const getDayLandmark = (title: string, subtitle: string) => {
+    const text = (title + ' ' + subtitle).toLowerCase();
+    if (text.includes('바나힐') || text.includes('골든브릿지')) {
+      return { img: '/images/landmarks/banahills.jpg', tag: '바나힐 골든브릿지' };
+    }
+    if (text.includes('호이안') || text.includes('소원배') || text.includes('구시가지') || text.includes('바구니배')) {
+      return { img: '/images/landmarks/hoian.jpg', tag: '호이안 올드타운' };
+    }
+    if (text.includes('선짜') || text.includes('린응사') || text.includes('관음상')) {
+      return { img: '/images/landmarks/ladybuddha.jpg', tag: '선짜반도 영흥사' };
+    }
+    if (text.includes('미케비치') || text.includes('해변') || text.includes('비치') || text.includes('샌딩') || text.includes('출국')) {
+      return { img: '/images/landmarks/mykhe.jpg', tag: '미케비치 해안선' };
+    }
+    if (text.includes('brg') || text.includes('몽고메리')) {
+      return { img: '/images/golf/brg.jpg', tag: '명문 챔피언십 골프' };
+    }
+    if (text.includes('호이아나') || text.includes('빈펄') || text.includes('라구나')) {
+      return { img: '/images/golf/hoiana.jpg', tag: '세계 100대 링크스' };
+    }
+    return { img: '/images/landmarks/dragonbridge.jpg', tag: '다낭 시내 & 용다리' };
+  };
+
   return (
     <section id="itinerary" className="py-24 bg-white relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -312,36 +335,63 @@ export const TourItinerary: React.FC<TourItineraryProps> = ({ onSelectPackage })
                 className="bg-white/95 backdrop-blur-sm rounded-2xl p-5 sm:p-8 shadow-sm border-2 border-[#EBE7DF] hover:border-forest-700/40 hover:bg-white hover:shadow-md transition-all"
               >
                 {/* Day Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100 mb-5">
-                  <div className="flex items-center gap-3.5">
-                    <span className="px-3.5 py-1.5 rounded-xl bg-forest-900 text-gold-300 font-black text-sm tracking-wider shadow-xs flex-shrink-0">
-                      DAY {day.day}
-                    </span>
-                    <div>
-                      <h4 className="text-lg sm:text-xl font-bold text-charcoal-900 break-keep">
-                        {day.title}
-                      </h4>
-                      <p className="text-xs sm:text-sm text-forest-800 font-bold mt-0.5 break-keep">
-                        {day.subtitle}
-                      </p>
-                    </div>
-                  </div>
+                {(() => {
+                  const landmark = getDayLandmark(day.title, day.subtitle);
+                  return (
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 mb-5">
+                      <div className="flex items-center gap-3.5">
+                        {/* Landmark Photo Thumbnail */}
+                        <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden flex-shrink-0 border-2 border-gold-400/40 shadow-sm bg-forest-950">
+                          <img
+                            src={landmark.img}
+                            alt={landmark.tag}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            onError={(e) => {
+                              e.currentTarget.src = '/images/landmarks/dragonbridge.jpg';
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                          <span className="absolute bottom-1 left-0.5 right-0.5 text-[9px] sm:text-[10px] font-bold text-gold-300 text-center truncate drop-shadow">
+                            {landmark.tag}
+                          </span>
+                        </div>
 
-                  {(day.stay || day.vehicle) && (
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-semibold text-charcoal-600 pt-1 sm:pt-0">
-                      {day.stay && (
-                        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-cream-100 border border-[#E5E0D8] break-keep">
-                          <Hotel className="w-3.5 h-3.5 text-forest-800 flex-shrink-0" /> {day.stay}
-                        </span>
-                      )}
-                      {day.vehicle && (
-                        <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-cream-100 border border-[#E5E0D8] break-keep">
-                          <Car className="w-3.5 h-3.5 text-forest-800 flex-shrink-0" /> {day.vehicle}
-                        </span>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="px-2.5 py-0.5 rounded-lg bg-forest-900 text-gold-300 font-black text-xs tracking-wider shadow-xs">
+                              DAY {day.day}
+                            </span>
+                            <span className="text-[11px] font-bold text-forest-900 bg-gold-100/90 px-2 py-0.5 rounded border border-gold-300">
+                              {landmark.tag}
+                            </span>
+                          </div>
+                          <h4 className="text-lg sm:text-xl font-bold text-charcoal-900 break-keep">
+                            {day.title}
+                          </h4>
+                          <p className="text-xs sm:text-sm text-forest-800 font-bold mt-0.5 break-keep">
+                            {day.subtitle}
+                          </p>
+                        </div>
+                      </div>
+
+                      {(day.stay || day.vehicle) && (
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-semibold text-charcoal-600 pt-1 sm:pt-0">
+                          {day.stay && (
+                            <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-cream-100 border border-[#E5E0D8] break-keep">
+                              <Hotel className="w-3.5 h-3.5 text-forest-800 flex-shrink-0" /> {day.stay}
+                            </span>
+                          )}
+                          {day.vehicle && (
+                            <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-cream-100 border border-[#E5E0D8] break-keep">
+                              <Car className="w-3.5 h-3.5 text-forest-800 flex-shrink-0" /> {day.vehicle}
+                            </span>
+                          )}
+                        </div>
                       )}
                     </div>
-                  )}
-                </div>
+                  );
+                })()}
 
                 {/* Timeline Events (16px font readability for 4060 travelers) */}
                 <div className="relative pl-6 sm:pl-8 space-y-4 before:absolute before:left-2.5 sm:before:left-3 before:top-2 before:bottom-2 before:w-0.5 before:bg-[#EBE7DF]">

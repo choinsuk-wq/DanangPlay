@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { DanangLandmarks } from './components/DanangLandmarks';
 import { GolfCourses } from './components/GolfCourses';
 import { TourItinerary } from './components/TourItinerary';
 import { AddonServices } from './components/AddonServices';
@@ -103,6 +104,9 @@ export const App: React.FC = () => {
       <main className="flex-grow">
         {/* 1. Hero Section with Quick Concierge Bar */}
         <Hero onBookClick={scrollToBooking} onQuickSearch={handleQuickSearch} />
+
+        {/* 1.5. 다낭 & 베트남 5대 대표 명소 쇼케이스 (Landmarks) */}
+        <DanangLandmarks />
 
         {/* 2. Section 1 - 명문 골프장 컬렉션 (Main Focus) */}
         <GolfCourses onSelectGolfCourse={handleSelectGolfCourse} />

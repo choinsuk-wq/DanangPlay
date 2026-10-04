@@ -585,7 +585,7 @@ export const GOLF_COURSES: GolfCourse[] = [
     ],
     facilities: ['18홀 최신 챔피언십 코스', '최신 모던 클럽하우스', '드라이빙 레인지 & 어프로치 연습장', 'VIP 라운지'],
     description: '베트남 중부 해안의 거대한 모래 언덕을 배경으로 잭 니클라우스 사단이 새롭게 선보인 최첨단 럭셔리 링크스 코스입니다. 끝없이 펼쳐지는 해안 사구와 도전적인 벙커 배치가 일품이며, 최상급 잔디 관리 상태로 오픈 직후부터 폭발적인 인기를 끌고 있습니다.',
-    imageUrl: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1000&q=80'
+    imageUrl: '/images/golf/goldensands.jpg'
   }
 ];
 
@@ -634,7 +634,7 @@ export const VILLA_OPTIONS: VillaOption[] = [
     location: '다낭 미케비치 해안가 고급 리조트 단지 내',
     description: '거실에서 프라이빗 인피니티 풀로 바로 연결되며, 몇 걸음만 걸어나가면 에메랄드빛 프라이빗 비치가 펼쳐지는 럭셔리 휴양 빌라입니다.',
     features: ['프라이빗 수영장', '주방 및 다이닝 룸', '매일 아침 객실 조식 딜리버리', '24시간 리조트 보안'],
-    imageUrl: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1000&q=80'
+    imageUrl: '/images/villa-ocean.jpg'
   },
   {
     id: 'luxury-5br',

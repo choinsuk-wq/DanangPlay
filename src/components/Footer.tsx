@@ -10,9 +10,13 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-forest-950 text-slate-300 text-xs sm:text-sm border-t-2 border-forest-900">
+    <footer className="bg-forest-950 text-slate-300 text-xs sm:text-sm border-t-2 border-forest-900 relative overflow-hidden">
+      {/* Hoi An Lanterns Warm Ambient Glow */}
+      <div className="absolute top-1/4 right-5 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-96 h-96 bg-forest-800/20 rounded-full blur-3xl pointer-events-none" />
+
       {/* FAQ Section */}
-      <div id="faq" className="scroll-mt-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 sm:py-20 border-b border-forest-900">
+      <div id="faq" className="scroll-mt-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-24 sm:py-20 border-b border-forest-900 relative z-10">
         <div className="text-center mb-10 sm:mb-12">
           <span className="text-gold-400 font-extrabold text-xs uppercase tracking-widest block mb-2">
             FREQUENTLY ASKED QUESTIONS
@@ -71,7 +75,7 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Main Footer Info */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Col 1: Brand & Tagline */}
           <div className="md:col-span-2">

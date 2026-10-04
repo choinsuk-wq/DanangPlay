@@ -186,11 +186,11 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
       {/* High-Resolution Wide Panoramic Background with Luxury Contrast Vignette */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none">
         <img
-          src="https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=2400&q=88"
+          src="/images/hero-bg.jpg"
           alt="다낭 챔피언십 명문 골프 코스 전경"
           className="w-full h-full object-cover object-center opacity-35 scale-105 transform animate-fade-in"
           onError={(e) => {
-            e.currentTarget.src = 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=2000&q=80';
+            e.currentTarget.src = 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=2400&q=88';
           }}
         />
         {/* Layered deep forest green gradient overlays for timeless prestige */}
@@ -200,9 +200,25 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         {/* Top Tag: Luxury Crest / Official Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-forest-900/80 border border-gold-400/50 text-gold-300 text-[11px] sm:text-xs font-bold mb-6 backdrop-blur-md shadow-lg max-w-full break-keep text-center">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-forest-900/80 border border-gold-400/50 text-gold-300 text-[11px] sm:text-xs font-bold mb-4 backdrop-blur-md shadow-lg max-w-full break-keep text-center">
           <Sparkles className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
           <span className="tracking-wide">DANANG PREMIER GOLF & PRIVATE TRAVEL CONCIERGE</span>
+        </div>
+
+        {/* Vietnam & Danang Landmark Quick Highlight Chips */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-3xl">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/15 border border-gold-400/30 text-slate-200 text-[11px] sm:text-xs font-semibold backdrop-blur-sm transition-colors">
+            <span className="text-gold-400">✦</span> 바나힐 골든브릿지
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/15 border border-gold-400/30 text-slate-200 text-[11px] sm:text-xs font-semibold backdrop-blur-sm transition-colors">
+            <span className="text-gold-400">✦</span> 호이안 올드타운 풍등
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/15 border border-gold-400/30 text-slate-200 text-[11px] sm:text-xs font-semibold backdrop-blur-sm transition-colors">
+            <span className="text-gold-400">✦</span> 미케비치 5성급 휴양
+          </span>
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/15 border border-gold-400/30 text-slate-200 text-[11px] sm:text-xs font-semibold backdrop-blur-sm transition-colors">
+            <span className="text-gold-400">✦</span> 7대 명문 챔피언십 골프
+          </span>
         </div>
 
         {/* Main Headline (Clean, modern Pretendard font) */}

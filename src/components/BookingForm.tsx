@@ -265,8 +265,12 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   };
 
   return (
-    <section id="booking" className="py-24 bg-[#F5F4F0] relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="booking" className="py-24 bg-gradient-to-b from-[#F5F4F0] via-cream-100/60 to-[#EFECE6] relative overflow-hidden">
+      {/* Luxury Resort Warm Ambient Glows */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-gold-400/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-forest-800/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-forest-900 text-gold-400 text-xs sm:text-sm font-bold mb-4 shadow-sm border border-gold-400/30">
