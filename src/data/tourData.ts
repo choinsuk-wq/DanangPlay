@@ -634,7 +634,7 @@ export const VILLA_OPTIONS: VillaOption[] = [
     location: '다낭 미케비치 해안가 고급 리조트 단지 내',
     description: '거실에서 프라이빗 인피니티 풀로 바로 연결되며, 몇 걸음만 걸어나가면 에메랄드빛 프라이빗 비치가 펼쳐지는 럭셔리 휴양 빌라입니다.',
     features: ['프라이빗 수영장', '주방 및 다이닝 룸', '매일 아침 객실 조식 딜리버리', '24시간 리조트 보안'],
-    imageUrl: '/images/villa-ocean.jpg'
+    imageUrl: '/images/villa-beachfront.jpg'
   },
   {
     id: 'luxury-5br',
@@ -644,7 +644,7 @@ export const VILLA_OPTIONS: VillaOption[] = [
     location: '다낭-호이안 중간 몽고메리 골프장 인접 리조트',
     description: '골프 2팀(8인) 이상이 한 공간에서 라운딩 후 단독 BBQ 파티와 수영을 즐길 수 있는 초대형 풀빌라입니다. 완벽한 프라이버시가 보장됩니다.',
     features: ['대형 단독 풀 & 썬베드', '야외 바베큐 가든 파티 가능', '골프장 차량 5분 거리', '전담 하우스키핑 케어'],
-    imageUrl: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80'
+    imageUrl: '/images/villa-garden.jpg'
   }
 ];
 

@@ -13,7 +13,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-const FALLBACK_RESORT_IMAGE = 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80';
+const FALLBACK_RESORT_IMAGE = 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1000&q=80';
 const FALLBACK_VEHICLE_IMAGE = 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80';
 
 interface AddonServicesProps {
