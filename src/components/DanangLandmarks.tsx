@@ -51,7 +51,7 @@ const LANDMARKS: Landmark[] = [
     highlightTag: '다낭 바다를 굽어보는 천혜의 비경',
     description: '푸른 바다와 다낭 시내 전경이 파노라마로 펼쳐지는 영험한 명소. 웅장한 백색 해수관음상과 울창한 열대 원시림 절벽이 어우러집니다.',
     imageUrl: '/images/landmarks/ladybuddha.jpg',
-    fallbackUrl: 'https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80',
+    fallbackUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7d/Lady_Buddha_in_Da_Nang%2C_Vietnam.jpg',
   },
   {
     id: 'dragonbridge',
@@ -61,25 +61,25 @@ const LANDMARKS: Landmark[] = [
     highlightTag: '주말 황금 불쇼 & 낭만 한강 야경',
     description: '다낭 시내 한강을 가로지르는 황금빛 용 모양의 거대 교량. 주말 밤 화려한 불쇼/물쇼와 강변 유람선, 야시장이 펼쳐지는 활기의 중심입니다.',
     imageUrl: '/images/landmarks/dragonbridge.jpg',
-    fallbackUrl: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80',
+    fallbackUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/C%E1%BA%A7u_R%E1%BB%93ng.jpg',
   },
 ];
 
 export const DanangLandmarks: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-forest-950 via-[#0B2A20] to-[#FAF9F6] text-white relative overflow-hidden">
+    <section id="landmarks" className="py-20 bg-gradient-to-b from-forest-950 via-[#0B2A20] to-[#FAF9F6] text-white relative overflow-hidden">
       {/* Background Subtle Ambiance */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-96 h-96 bg-forest-800/20 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-4xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-forest-900/90 text-gold-400 text-xs sm:text-sm font-bold mb-4 border border-gold-400/30 shadow-md">
             <Compass className="w-4 h-4 text-gold-400" />
             <span>VIETNAM & DANANG ICONIC LANDMARKS</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4 font-sans break-keep">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-[32px] font-bold text-white tracking-tight mb-4 font-sans break-keep md:whitespace-nowrap">
             다낭을 가장 완벽하게 경험하는 5대 대표 명소
           </h2>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed break-keep">
