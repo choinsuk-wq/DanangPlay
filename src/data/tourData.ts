@@ -112,7 +112,7 @@ export const TOUR_PACKAGES: TourPackage[] = [
       '바나힐스 GC 18홀 라운딩 + 썬월드 바나힐(골든브릿지) 연계 투어',
       '전 일정 최고급 단독 풀빌라 (단독 수영장 + 프라이빗 BBQ)',
       '호이안 올드타운 & 안방비치 핫플레이스 올데이 투어',
-      '포드 트랜짓 / 29인승 럭셔리 리무진 전일정 전용 배차'
+      '현대 쏠라티 / 29인승 럭셔리 리무진 전일정 전용 배차'
     ],
     included: [
       '전 일정 VIP 단독 전용 차량 (골프백 대용량 적재 전용 리무진)',
@@ -592,25 +592,25 @@ export const GOLF_COURSES: GolfCourse[] = [
 export const VEHICLE_OPTIONS: VehicleOption[] = [
   {
     id: 'suv-7s',
-    name: '7인승 SUV (토요타 포츄너 / 이노바)',
-    englishName: 'Toyota Fortuner / Innova 7-Seater',
+    name: '7인승 SUV (미쓰비시 엑스팬더 / 토요타 벨로즈)',
+    englishName: 'Mitsubishi Xpander / Toyota Veloz 7-Seater',
     capacity: '성인 2~3인 권장',
     luggage: '골프백 2~3개 + 캐리어 2~3개',
     bestFor: '2~3인 소인원, 부부 동반 골프 & 시내 자유일정',
     description: '골목이 많은 다낭 시내와 맛집 이동에 기동성이 탁월하며, 쾌적한 에어컨과 숙련된 전담 기사가 편안하게 모십니다.',
     features: ['단독 전용 차량 & 기사 포함', '유류비 & 톨게이트비 포함', '차량 내 생수 제공', '24시간 카톡 배차 지원'],
-    imageUrl: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1000&q=80'
+    imageUrl: '/images/car-veloz.jpg'
   },
   {
     id: 'van-16s',
-    name: '16인승 밴 (포드 트랜짓 / 현대 쏠라티)',
-    englishName: 'Ford Transit / Hyundai Solati 16-Seater',
+    name: '16인승 밴 (현대 쏠라티 / 포드 트랜짓)',
+    englishName: 'Hyundai Solati / Ford Transit 16-Seater',
     capacity: '골프팀 4~8인 권장',
     luggage: '골프백 6~8개 + 캐리어 8개 이상 넉넉 탑재',
     bestFor: '4인 1팀 또는 8인 2팀 단체 골퍼에게 가장 인기 있는 차종',
     description: '천장이 높고 트렁크 공간이 넓어 골프백과 대형 캐리어를 가득 실어도 탑승 공간이 쾌적합니다. 1팀 골프투어의 필수 차종입니다.',
     features: ['하이루프 넓은 실내 공간', '골프백 대용량 적재 전용 개조', '기사 팁 제외 전 비용 포함', '현지 핫라인 통역 지원'],
-    imageUrl: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1000&q=80'
+    imageUrl: '/images/car-solati.jpg'
   },
   {
     id: 'limo-29s',
