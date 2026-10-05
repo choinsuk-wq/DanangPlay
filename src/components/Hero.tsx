@@ -12,7 +12,12 @@ import {
   ChevronDown,
   Check,
   X,
-  Copy
+  Copy,
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  Pause,
+  MapPin
 } from 'lucide-react';
 import { GOLF_COURSES, COMPANY_INFO } from '../data/tourData';
 
@@ -20,6 +25,57 @@ interface HeroProps {
   onBookClick: () => void;
   onQuickSearch?: (courses: string | string[], date: string, guestCount: number) => void;
 }
+
+interface HeroSlide {
+  id: string;
+  name: string;
+  subTitle: string;
+  location: string;
+  tag: string;
+  type: 'video' | 'image';
+  videoSrc?: string;
+  imageSrc: string;
+}
+
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    id: 'hoiana',
+    name: '호이아나 쇼어스 GC',
+    subTitle: '오션 링크스 코스',
+    location: '호이아나 쇼어스 골프클럽 (Hoiana Shores GC)',
+    tag: '에메랄드빛 해안 사구 챔피언십 링크스',
+    type: 'video',
+    videoSrc: '/video-hero.mp4',
+    imageSrc: '/images/hero-hoiana.jpg'
+  },
+  {
+    id: 'banahills',
+    name: '바나힐스 골프클럽',
+    subTitle: '홀 10 선라이즈 페어웨이',
+    location: '바나힐스 골프클럽 (Ba Na Hills Golf Club)',
+    tag: '세계적인 루크 도널드 설계 · 18홀 마운틴 코스',
+    type: 'image',
+    imageSrc: '/images/hero-banahills.jpg'
+  },
+  {
+    id: 'villa',
+    name: '미케비치 럭셔리 풀빌라',
+    subTitle: '골든 선셋 인피니티 풀',
+    location: '미케비치 프라이빗 풀빌라 (My Khe Sunset Villa)',
+    tag: '황금빛 노을 & 프라이빗 풀빌라 힐링',
+    type: 'image',
+    imageSrc: '/images/hero-villa.jpg'
+  },
+  {
+    id: 'montgomerie',
+    name: '몽고메리 링크스',
+    subTitle: '챔피언십 18홀',
+    location: '몽고메리 링크스 (Montgomerie Links Vietnam)',
+    tag: '콜린 몽고메리가 완성한 최고 권위 명문 코스',
+    type: 'image',
+    imageSrc: '/images/hero-montgomerie.jpg'
+  }
+];
 
 export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
   const [selectedCourses, setSelectedCourses] = useState<string[]>(['BRG 다낭 골프 리조트']);
@@ -35,8 +91,29 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
     formattedText: string;
   } | null>(null);
 
+  // Hero Visual Slider State
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+
   const courseDropdownRef = useRef<HTMLDivElement>(null);
   const dateInputRef = useRef<HTMLInputElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Auto-advance slider
+  useEffect(() => {
+    if (!isAutoPlay) return;
+    const interval = setInterval(() => {
+      setCurrentSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isAutoPlay]);
+
+  // Ensure video plays when slide 0 is active
+  useEffect(() => {
+    if (currentSlideIndex === 0 && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, [currentSlideIndex]);
 
   // Close course dropdown on click outside
   useEffect(() => {
@@ -183,55 +260,110 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
 
   return (
     <section id="home" className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden bg-forest-950">
-      {/* High-Resolution Wide Panoramic Background with Luxury Contrast Vignette */}
-      <div className="absolute inset-0 z-0 select-none pointer-events-none">
-        <img
-          src="/images/hero-bg.jpg"
-          alt="다낭 챔피언십 명문 골프 코스 전경"
-          className="w-full h-full object-cover object-center opacity-35 scale-105 transform animate-fade-in"
-          onError={(e) => {
-            e.currentTarget.src = 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=2400&q=88';
-          }}
-        />
-        {/* Layered deep forest green gradient overlays for timeless prestige */}
-        <div className="absolute inset-0 bg-gradient-to-t from-forest-950 via-forest-950/70 to-forest-900/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest-950/90 via-transparent to-forest-950/85" />
+      {/* =========================================================================
+          Wide Visual Slider & Short-form Video Background
+          Bright Tone with strictly 20~25% Dim overlay to keep lush greens and sunset vivid
+      ========================================================================= */}
+      <div className="absolute inset-0 z-0 select-none overflow-hidden pointer-events-none">
+        {HERO_SLIDES.map((slide, index) => {
+          const isActive = currentSlideIndex === index;
+          return (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+            >
+              {slide.type === 'video' ? (
+                <video
+                  ref={videoRef}
+                  src={slide.videoSrc}
+                  poster={slide.imageSrc}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  className="w-full h-full object-cover object-center scale-105 transform animate-fade-in"
+                />
+              ) : (
+                <img
+                  src={slide.imageSrc}
+                  alt={slide.name}
+                  className="w-full h-full object-cover object-center scale-105 transform"
+                  onError={(e) => {
+                    e.currentTarget.src = 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=2400&q=88';
+                  }}
+                />
+              )}
+            </div>
+          );
+        })}
+
+        {/* Bright 20~25% Dim Overlay: Retains natural vibrancy while ensuring white typography legibility */}
+        <div className="absolute inset-0 z-20 bg-gradient-to-b from-black/35 via-black/20 to-black/35" />
+        <div className="absolute inset-0 z-20 bg-forest-950/15" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+      {/* Prev / Next Slide Floating Controls (Desktop) */}
+      <button
+        type="button"
+        onClick={() => {
+          setCurrentSlideIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+          setIsAutoPlay(false);
+        }}
+        className="hidden lg:flex absolute left-5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/45 hover:bg-black/75 border border-white/30 hover:border-gold-400 text-white hover:text-gold-300 items-center justify-center transition-all backdrop-blur-md cursor-pointer shadow-xl"
+        aria-label="이전 배경"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setCurrentSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
+          setIsAutoPlay(false);
+        }}
+        className="hidden lg:flex absolute right-5 top-1/2 -translate-y-1/2 z-30 w-11 h-11 rounded-full bg-black/45 hover:bg-black/75 border border-white/30 hover:border-gold-400 text-white hover:text-gold-300 items-center justify-center transition-all backdrop-blur-md cursor-pointer shadow-xl"
+        aria-label="다음 배경"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
+      {/* Main Content Container */}
+      <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         {/* Top Tag: Luxury Crest / Official Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-forest-900/80 border border-gold-400/50 text-gold-300 text-[11px] sm:text-xs font-bold mb-4 backdrop-blur-md shadow-lg max-w-full break-keep text-center">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-forest-950/80 border border-gold-400/60 text-gold-300 text-[11px] sm:text-xs font-bold mb-4 backdrop-blur-md shadow-xl max-w-full break-keep text-center">
           <Sparkles className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
           <span className="tracking-wide">DANANG PREMIER GOLF & PRIVATE TRAVEL CONCIERGE</span>
         </div>
 
         {/* Vietnam & Danang Landmark Quick Highlight Chips */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-6 max-w-3xl">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/15 border border-gold-400/30 text-slate-200 text-[11px] sm:text-xs font-semibold backdrop-blur-sm transition-colors">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-5 max-w-3xl">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 hover:bg-black/60 border border-gold-400/40 text-slate-100 text-[11px] sm:text-xs font-semibold backdrop-blur-md transition-colors shadow-sm">
             <span className="text-gold-400">✦</span> 바나힐 골든브릿지
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/15 border border-gold-400/30 text-slate-200 text-[11px] sm:text-xs font-semibold backdrop-blur-sm transition-colors">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 hover:bg-black/60 border border-gold-400/40 text-slate-100 text-[11px] sm:text-xs font-semibold backdrop-blur-md transition-colors shadow-sm">
             <span className="text-gold-400">✦</span> 호이안 올드타운 풍등
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/15 border border-gold-400/30 text-slate-200 text-[11px] sm:text-xs font-semibold backdrop-blur-sm transition-colors">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 hover:bg-black/60 border border-gold-400/40 text-slate-100 text-[11px] sm:text-xs font-semibold backdrop-blur-md transition-colors shadow-sm">
             <span className="text-gold-400">✦</span> 미케비치 5성급 휴양
           </span>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 hover:bg-white/15 border border-gold-400/30 text-slate-200 text-[11px] sm:text-xs font-semibold backdrop-blur-sm transition-colors">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/40 hover:bg-black/60 border border-gold-400/40 text-slate-100 text-[11px] sm:text-xs font-semibold backdrop-blur-md transition-colors shadow-sm">
             <span className="text-gold-400">✦</span> 7대 명문 챔피언십 골프
           </span>
         </div>
 
-        {/* Main Headline (Clean, modern Pretendard font) */}
-        <h1 className="text-2xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.3] sm:leading-[1.22] mb-6 font-sans break-keep">
-          다낭 골프의 <span className="text-gold-400 underline decoration-gold-500/40 underline-offset-8">격(格)</span>을 높이다.
+        {/* Main Headline (Clean, modern font with high-contrast text shadow) */}
+        <h1 className="text-2xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.3] sm:leading-[1.22] mb-6 font-sans break-keep drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+          다낭 골프의 <span className="text-gold-400 underline decoration-gold-500/60 underline-offset-8">격(格)</span>을 높이다.
           <br />
-          <span className="text-lg sm:text-3xl lg:text-4xl font-normal text-slate-100 block mt-3.5 tracking-normal break-keep">
+          <span className="text-lg sm:text-3xl lg:text-4xl font-normal text-slate-100 block mt-3.5 tracking-normal break-keep drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             현지 상주 전문가가 완성하는 프리미엄 부킹 & 투어
           </span>
         </h1>
 
-        {/* Subtitle with High Readability (3 distinct clean lines) */}
-        <div className="max-w-4xl mx-auto text-base sm:text-lg lg:text-xl text-slate-200/90 font-normal leading-relaxed mb-10 space-y-1.5 sm:space-y-1 text-center break-keep">
+        {/* Subtitle with High Readability */}
+        <div className="max-w-4xl mx-auto text-base sm:text-lg lg:text-xl text-slate-100 font-normal leading-relaxed mb-6 space-y-1.5 sm:space-y-1 text-center break-keep drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
           <p className="text-gold-300 font-bold text-lg sm:text-xl break-keep">
             항공권만 챙겨오십시오.
           </p>
@@ -240,13 +372,80 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
             <strong className="text-white font-bold">단독 의전 차량</strong>, 그리고{' '}
             <strong className="text-white font-bold">최고급 독채 풀빌라</strong>까지
           </p>
-          <p className="text-slate-300 break-keep">
+          <p className="text-slate-200 break-keep">
             10년 이상 다낭에 상주한 전담 한국인 총괄 매니저가 처음부터 끝까지 품격 있게 풀케어합니다.
           </p>
         </div>
 
+        {/* Interactive Visual Slider Pills (Hoiana, Ba Na Hills, My Khe Villa, Montgomerie) */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-7 max-w-4xl">
+          {HERO_SLIDES.map((slide, idx) => {
+            const isActive = currentSlideIndex === idx;
+            return (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={() => {
+                  setCurrentSlideIndex(idx);
+                  setIsAutoPlay(false);
+                }}
+                className={`group relative px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-bold transition-all duration-300 flex items-center gap-2 cursor-pointer backdrop-blur-md ${
+                  isActive
+                    ? 'bg-gold-500 text-forest-950 border-2 border-gold-300 shadow-lg shadow-gold-500/30 scale-105 font-extrabold'
+                    : 'bg-black/50 hover:bg-black/70 text-slate-200 border border-white/25 hover:border-gold-400/50'
+                }`}
+                title={`${slide.name} (${slide.tag})`}
+              >
+                <span
+                  className={`w-2 h-2 rounded-full transition-transform ${
+                    isActive ? 'bg-forest-950 scale-125' : 'bg-gold-400'
+                  }`}
+                />
+                <span>{slide.name}</span>
+                <span
+                  className={`text-[10px] px-1.5 py-0.5 rounded font-bold transition-colors ${
+                    isActive
+                      ? 'bg-forest-950/20 text-forest-950 font-black'
+                      : 'bg-white/15 text-gold-300 group-hover:bg-gold-400/20'
+                  }`}
+                >
+                  {slide.subTitle}
+                </span>
+              </button>
+            );
+          })}
+
+          {/* Auto-play toggle button */}
+          <button
+            type="button"
+            onClick={() => setIsAutoPlay(!isAutoPlay)}
+            className="px-2.5 py-1.5 rounded-full text-[11px] font-semibold bg-black/50 hover:bg-black/70 text-slate-300 border border-white/20 transition-colors flex items-center gap-1 cursor-pointer backdrop-blur-md"
+            title={isAutoPlay ? '자동 슬라이드 일시정지' : '자동 슬라이드 재생'}
+          >
+            {isAutoPlay ? (
+              <>
+                <Pause className="w-3 h-3 text-gold-400" />
+                <span className="hidden sm:inline">자동 전환</span>
+              </>
+            ) : (
+              <>
+                <Play className="w-3 h-3 text-gold-400" />
+                <span className="hidden sm:inline">슬라이드 재생</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Current Background Destination Tag */}
+        <div className="flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/20 text-white text-[11px] sm:text-xs mb-6 shadow-md">
+          <MapPin className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+          <span className="text-gold-300 font-bold">{HERO_SLIDES[currentSlideIndex].location}</span>
+          <span className="text-white/40">·</span>
+          <span className="text-slate-200 hidden sm:inline">{HERO_SLIDES[currentSlideIndex].tag}</span>
+        </div>
+
         {/* 2. Quick Consultation Bar [골프장 선택] [희망 일정] [인원수] [원클릭 견적 문의] */}
-        <div className="w-full max-w-4xl bg-white rounded-2xl p-4 sm:p-5 shadow-2xl border-2 border-gold-400/40 mb-12 text-left">
+        <div className="w-full max-w-4xl bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-2xl border-2 border-gold-400/50 mb-12 text-left ring-1 ring-black/10">
           <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
             <span className="text-xs sm:text-sm font-black text-forest-900 flex items-center gap-1.5 break-keep">
               <span className="w-2 h-2 rounded-full bg-gold-500 flex-shrink-0"></span>
@@ -295,14 +494,14 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
                       <button
                         type="button"
                         onClick={selectAllCourses}
-                        className="text-[11px] font-bold text-forest-800 hover:bg-forest-50 px-2 py-0.5 rounded border border-forest-200 transition-colors"
+                        className="text-[11px] font-bold text-forest-800 hover:bg-forest-50 px-2 py-0.5 rounded border border-forest-200 transition-colors cursor-pointer"
                       >
                         전체 선택
                       </button>
                       <button
                         type="button"
                         onClick={clearCourses}
-                        className="text-[11px] font-bold text-slate-500 hover:bg-slate-100 px-2 py-0.5 rounded border border-slate-200 transition-colors"
+                        className="text-[11px] font-bold text-slate-500 hover:bg-slate-100 px-2 py-0.5 rounded border border-slate-200 transition-colors cursor-pointer"
                       >
                         초기화
                       </button>
@@ -433,32 +632,32 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
 
         {/* Trust Badges / 4 Key Values */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto w-full text-left">
-          <div className="bg-forest-900/60 backdrop-blur-md border border-white/15 rounded-2xl p-3.5 sm:p-4 text-white hover:bg-forest-900/80 transition-colors shadow-md">
-            <div className="w-9 h-9 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center mb-2.5 border border-gold-400/30 flex-shrink-0">
+          <div className="bg-forest-950/80 backdrop-blur-md border border-white/20 rounded-2xl p-3.5 sm:p-4 text-white hover:bg-forest-900/90 transition-all shadow-xl">
+            <div className="w-9 h-9 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center mb-2.5 border border-gold-400/40 flex-shrink-0">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <h4 className="text-xs sm:text-base font-bold text-white break-keep">100% 프라이빗 단독</h4>
             <p className="text-[11px] sm:text-xs text-slate-300 mt-1 leading-snug break-keep">모르는 타인 조인 일체 없음! 우리 일행만의 전용 의전</p>
           </div>
 
-          <div className="bg-forest-900/60 backdrop-blur-md border border-white/15 rounded-2xl p-3.5 sm:p-4 text-white hover:bg-forest-900/80 transition-colors shadow-md">
-            <div className="w-9 h-9 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center mb-2.5 border border-gold-400/30 flex-shrink-0">
+          <div className="bg-forest-950/80 backdrop-blur-md border border-white/20 rounded-2xl p-3.5 sm:p-4 text-white hover:bg-forest-900/90 transition-all shadow-xl">
+            <div className="w-9 h-9 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center mb-2.5 border border-gold-400/40 flex-shrink-0">
               <Award className="w-5 h-5" />
             </div>
             <h4 className="text-xs sm:text-base font-bold text-white break-keep">골든 티오프 100% 확정</h4>
             <p className="text-[11px] sm:text-xs text-slate-300 mt-1 leading-snug break-keep">호이아나·바나힐·BRG 직통 라인 프라임 타임 배정</p>
           </div>
 
-          <div className="bg-forest-900/60 backdrop-blur-md border border-white/15 rounded-2xl p-3.5 sm:p-4 text-white hover:bg-forest-900/80 transition-colors shadow-md">
-            <div className="w-9 h-9 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center mb-2.5 border border-gold-400/30 flex-shrink-0">
+          <div className="bg-forest-950/80 backdrop-blur-md border border-white/20 rounded-2xl p-3.5 sm:p-4 text-white hover:bg-forest-900/90 transition-all shadow-xl">
+            <div className="w-9 h-9 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center mb-2.5 border border-gold-400/40 flex-shrink-0">
               <CheckCircle2 className="w-5 h-5" />
             </div>
             <h4 className="text-xs sm:text-base font-bold text-white break-keep">현지 10년 직영 케어</h4>
             <p className="text-[11px] sm:text-xs text-slate-300 mt-1 leading-snug break-keep">중간 수수료 거품 없는 합리적 정찰 견적 및 실시간 케어</p>
           </div>
 
-          <div className="bg-forest-900/60 backdrop-blur-md border border-white/15 rounded-2xl p-3.5 sm:p-4 text-white hover:bg-forest-900/80 transition-colors shadow-md">
-            <div className="w-9 h-9 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center mb-2.5 border border-gold-400/30 flex-shrink-0">
+          <div className="bg-forest-950/80 backdrop-blur-md border border-white/20 rounded-2xl p-3.5 sm:p-4 text-white hover:bg-forest-900/90 transition-all shadow-xl">
+            <div className="w-9 h-9 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center mb-2.5 border border-gold-400/40 flex-shrink-0">
               <MessageCircle className="w-5 h-5" />
             </div>
             <h4 className="text-xs sm:text-base font-bold text-white break-keep">NO 쇼핑 · NO 옵션강요</h4>
