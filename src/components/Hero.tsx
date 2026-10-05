@@ -259,7 +259,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
   };
 
   return (
-    <section id="home" className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-28 pb-20 overflow-hidden bg-forest-950">
+    <section id="home" className="relative min-h-[92vh] lg:min-h-screen flex items-center justify-center pt-28 pb-20 overflow-x-clip bg-forest-950">
       {/* =========================================================================
           Wide Visual Slider & Short-form Video Background
           Bright Tone with strictly 20~25% Dim overlay to keep lush greens and sunset vivid
@@ -330,7 +330,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
       </button>
 
       {/* Main Content Container */}
-      <div className="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+      <div className="relative z-30 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         {/* Top Tag: Luxury Crest / Official Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-forest-950/80 border border-gold-400/60 text-gold-300 text-[11px] sm:text-xs font-bold mb-4 backdrop-blur-md shadow-xl max-w-full break-keep text-center">
           <Sparkles className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
@@ -445,7 +445,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
         </div>
 
         {/* 2. Quick Consultation Bar [골프장 선택] [희망 일정] [인원수] [원클릭 견적 문의] */}
-        <div className="w-full max-w-4xl bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-2xl border-2 border-gold-400/50 mb-12 text-left ring-1 ring-black/10">
+        <div className={`w-full max-w-4xl bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-2xl border-2 border-gold-400/50 mb-12 text-left ring-1 ring-black/10 relative transition-all ${isCourseDropdownOpen ? 'z-40' : 'z-20'}`}>
           <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
             <span className="text-xs sm:text-sm font-black text-forest-900 flex items-center gap-1.5 break-keep">
               <span className="w-2 h-2 rounded-full bg-gold-500 flex-shrink-0"></span>
@@ -458,7 +458,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
 
           <form onSubmit={handleQuickSubmit} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end">
             {/* 1. Multi-Select Course Selection */}
-            <div ref={courseDropdownRef} className="relative">
+            <div ref={courseDropdownRef} className="relative z-50">
               <label className="block text-xs font-extrabold text-charcoal-800 mb-1.5 flex items-center justify-between break-keep">
                 <span className="flex items-center gap-1">
                   <Flag className="w-3.5 h-3.5 text-forest-800 flex-shrink-0" />
@@ -487,7 +487,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
 
               {/* Multi-Select Dropdown Menu */}
               {isCourseDropdownOpen && (
-                <div className="absolute top-full mt-2 left-0 w-full sm:w-[320px] max-w-[92vw] bg-white rounded-2xl shadow-2xl border-2 border-gold-400/60 p-3 z-50 animate-fade-in">
+                <div className="absolute top-full mt-2 left-0 w-full sm:w-[340px] max-w-[92vw] bg-white rounded-2xl shadow-2xl border-2 border-gold-400/70 p-3 z-50 animate-fade-in ring-1 ring-black/10">
                   <div className="flex items-center justify-between pb-2 mb-2 border-b border-slate-100 text-xs">
                     <span className="font-extrabold text-forest-900">다낭 7대 명문 코스</span>
                     <div className="flex items-center gap-1.5">
@@ -631,7 +631,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onQuickSearch }) => {
         </div>
 
         {/* Trust Badges / 4 Key Values */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto w-full text-left">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto w-full text-left relative z-10">
           <div className="bg-forest-950/80 backdrop-blur-md border border-white/20 rounded-2xl p-3.5 sm:p-4 text-white hover:bg-forest-900/90 transition-all shadow-xl">
             <div className="w-9 h-9 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center mb-2.5 border border-gold-400/40 flex-shrink-0">
               <ShieldCheck className="w-5 h-5" />
